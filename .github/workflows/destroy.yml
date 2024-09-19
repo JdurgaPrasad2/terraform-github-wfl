@@ -1,0 +1,42 @@
+name: "TF_Plan_Destroy"
+on:
+  workflow_dispatch:
+permissions:
+      id-token: write  
+      contents: read  
+jobs:
+  terraform-plan-destroy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials from AWS account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          #aws-region: ${{ vars.AWS_REGION }}
+          aws-region: "us-east-1"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7 
+          
+      - name: Terraform Init
+        run: terraform init
+        
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan  
+  
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
