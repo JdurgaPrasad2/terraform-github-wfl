@@ -20,7 +20,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
-          #aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ vars.AWS_REGION }}
           aws-region: "us-east-1" 
 
       - name: Setup Terraform
@@ -42,7 +42,7 @@ jobs:
           TF_VAR_department: ${{ vars.department }}
           TF_VAR_env: ${{ vars.env }}
           TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
-          #TF_VAR_region: ${{ vars.AWS_REGION }} 
+          TF_VAR_region: ${{ vars.AWS_REGION }} 
   terraform-apply:
     environment: dev
     needs: terraform-plan
@@ -71,7 +71,7 @@ jobs:
           TF_VAR_department:    ${{ vars.department }}
           TF_VAR_env:           ${{ vars.env }}
           TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
-          #TF_VAR_region:       ${{ vars.AWS_REGION }}
+          TF_VAR_region:       ${{ vars.AWS_REGION }}
         run: |
             terraform init
             terraform plan
