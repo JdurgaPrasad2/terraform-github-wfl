@@ -77,3 +77,45 @@ resource "aws_batch_job_queue" "job_queue" {
     compute_environment = aws_batch_compute_environment.compute_environment.arn
   }
 }
+
+#batch job definition
+
+resource "aws_batch_job_definition" "job_definition" {
+  container_properties = jsonencode({
+    command          = ["echo", "override this command"]
+    environment      = []
+    executionRoleArn = "arn:aws:iam::311324824904:role/batchtest-execution-role"
+    fargatePlatformConfiguration = {
+      platformVersion = "LATEST"
+    }
+    image       =  var.ecr_app_code_image
+    jobRoleArn  = "arn:aws:iam::311324824904:role/batchtest-execution-role"
+    mountPoints = []
+    networkConfiguration = {
+      assignPublicIp = var.assign_public_ip
+    }
+    resourceRequirements = [{
+      type  = "VCPU"
+      value = "1.0"
+      }, {
+      type  = "MEMORY"
+      value = "2048"
+    }]
+    secrets = []
+    ulimits = []
+    volumes = []
+  })
+  name                  = local.job_def_name
+  parameters            = {}
+  platform_capabilities = ["FARGATE"]
+  propagate_tags        = false
+  tags                  = {}
+  tags_all              = {}
+  type                  = var.job_def_type
+  retry_strategy {
+    attempts = 1
+  }
+  timeout {
+    attempt_duration_seconds = 300
+  }
+}
