@@ -7,7 +7,7 @@ locals {
 
 ## iam role and policies for batch compute environment 
 
-data "aws_iam_policy_document" "batch_compute_assume_role" {
+data "aws_iam_policy_document" "batch_service_assume" {
   statement {
     effect = "Allow"
 
@@ -20,13 +20,13 @@ data "aws_iam_policy_document" "batch_compute_assume_role" {
   }
 }
 
-resource "aws_iam_role" "batch_compute_assume_role" {
-  name               = "${var.project}_batch_compute_service_role"
-  assume_role_policy = data.aws_iam_policy_document.batch_compute_assume_role.json
+resource "aws_iam_role" "batch_service" {
+  name               = "${var.project}_batch_service_role"
+  assume_role_policy = data.aws_iam_policy_document.batch_service_assume.json
 }
 
-resource "aws_iam_role_policy_attachment" "service_role" {
-  role       = aws_iam_role.batch_compute_assume_role.name
+resource "aws_iam_role_policy_attachment" "batch_service" {
+  role       = aws_iam_role.batch_service.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
 }
 
@@ -60,7 +60,7 @@ resource "aws_batch_compute_environment" "compute_environment" {
     type = var.compute_resource_type
   }
 
-  service_role = aws_iam_role.service_role.arn
+  service_role = aws_iam_role.batch_service.arn
   type         = var.compute_env_type
   #depends_on   = [aws_iam_role_policy_attachment.service_role]
 }
@@ -80,7 +80,7 @@ resource "aws_batch_job_queue" "job_queue" {
 
 ## iam role and policies for batch job definition 
 
-data "aws_iam_policy_document" "job_exec_assume_role" {
+data "aws_iam_policy_document" "batch_job_exec_assume" {
   statement {
     effect = "Allow"
 
@@ -92,14 +92,18 @@ data "aws_iam_policy_document" "job_exec_assume_role" {
   }
 }
 
-resource "aws_iam_role" "job_exec_assume_role" {
+resource "aws_iam_role" "batch_job_exec" {
   name               = "${var.project}_batch_job_exec_assume_role"
-  assume_role_policy = data.aws_iam_policy_document.job_exec_assume_role.json
+  assume_role_policy = data.aws_iam_policy_document.batch_job_exec_assume.json
 }
 
-resource "aws_iam_role_policy_attachment" "job_exec_role" {
-  role       = aws_iam_role.job_exec_assume_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
+resource "aws_iam_role_policy_attachment" "batch_job_exec" {
+  for_each = toset( [ "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+                      "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+                      "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+                    ])  
+  role       =  aws_iam_role.batch_job_exec.name
+  policy_arn = each.key
 }
 
 #batch job definition
