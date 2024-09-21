@@ -91,3 +91,29 @@ resource "aws_iam_role_policy" "lambda_invoke_policy" {
   role   = aws_iam_role.step_function.id
 }
 */
+
+/*
+resource "aws_sqs_queue" "sqs_queue" { 
+  name                               = "${local.stack_name}-${var.queue_name}" 
+
+  fifo_queue                         = var.fifo_queue_type_enabled
+  fifo_throughput_limit              = var.fifo_queue_throughput_limit
+  delay_seconds                      = var.queue_delay_seconds
+  content_based_deduplication        = var.content_based_deduplication_enabled
+  deduplication_scope                = var.deduplication_scope
+  kms_data_key_reuse_period_seconds  = var.kms_data_key_reuse_period_seconds
+  kms_master_key_id                  = var.kms_master_key_id
+  max_message_size                   = var.max_message_size
+  message_retention_seconds          = var.message_retention_seconds
+  receive_wait_time_seconds          = var.receive_wait_time_seconds
+  sqs_managed_sse_enabled            = var.sqs_managed_sse_enabled
+  visibility_timeout_seconds         = var.visibility_timeout_seconds
+  policy                             = var.queue_access_policy
+
+  tags = {
+    "Name"                           = "${local.stack_name}-${var.queue_name}"
+    "Environment"                    = "${var.app_env}"
+    "Department"                     = "${var.app_prefix}"
+  }
+}
+*/
