@@ -112,12 +112,12 @@ resource "aws_batch_job_definition" "job_definition" {
   container_properties = jsonencode({
     command          = ["echo", "override this command"]
     environment      = []
-    executionRoleArn = "arn:aws:iam::311324824904:role/batchtest-execution-role"
+    executionRoleArn = aws_iam_role.batch_job_exec.arn
     fargatePlatformConfiguration = {
       platformVersion = "LATEST"
     }
     image       =  var.ecr_app_code_image
-    jobRoleArn  = "arn:aws:iam::311324824904:role/batchtest-execution-role"
+    jobRoleArn  = aws_iam_role.batch_job_exec.arn
     mountPoints = []
     networkConfiguration = {
       assignPublicIp = var.assign_public_ip
