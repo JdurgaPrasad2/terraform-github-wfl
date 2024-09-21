@@ -7,7 +7,7 @@ locals {
 
 ## iam role and policies for batch compute environment 
 
-data "aws_iam_policy_document" "assume_role" {
+data "aws_iam_policy_document" "batch_compute_assume_role" {
   statement {
     effect = "Allow"
 
@@ -20,13 +20,13 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_role" "service_role" {
-  name               = "${var.project}_batch_service_role"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+resource "aws_iam_role" "batch_compute_assume_role" {
+  name               = "${var.project}_batch_compute_service_role"
+  assume_role_policy = data.aws_iam_policy_document.batch_compute_assume_role.json
 }
 
 resource "aws_iam_role_policy_attachment" "service_role" {
-  role       = aws_iam_role.service_role.name
+  role       = aws_iam_role.batch_compute_assume_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
 }
 
@@ -76,6 +76,30 @@ resource "aws_batch_job_queue" "job_queue" {
     order               = 1
     compute_environment = aws_batch_compute_environment.compute_environment.arn
   }
+}
+
+## iam role and policies for batch job definition 
+
+data "aws_iam_policy_document" "job_exec_assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["ecs-tasks.amazonaws.com"]
+    }
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "job_exec_assume_role" {
+  name               = "${var.project}_batch_job_exec_assume_role"
+  assume_role_policy = data.aws_iam_policy_document.job_exec_assume_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "job_exec_role" {
+  role       = aws_iam_role.job_exec_assume_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
 }
 
 #batch job definition
