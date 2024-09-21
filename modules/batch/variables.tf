@@ -51,4 +51,17 @@ variable "job_def_type" {
   default = "container"
 }
 
+variable "compute_env_name" {
+  description = "batch compute environment name"
+  type = string
+}
 
+variable "job_queue_name" {
+  description = "job queue name"
+  type = string
+}
+
+variable "job_def_name" {
+  description = "job definition name"
+  type = string
+}
