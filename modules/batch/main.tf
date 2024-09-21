@@ -5,7 +5,7 @@ locals {
   job_def_name          = "${var.project}_${var.job_def_name}_${var.env}"
 }
 
-## IAM Role and Policies for Batch compute environment 
+## iam role and policies for batch compute environment 
 
 data "aws_iam_policy_document" "assume_role" {
   statement {
@@ -30,7 +30,7 @@ resource "aws_iam_role_policy_attachment" "service_role" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
 }
 
-# Security group for batch compute environment 
+# security group for batch compute environment 
 
 resource "aws_security_group" "compute_environment" {
   name = "${var.project}_batch_compute_env_${var.env}"
@@ -43,7 +43,7 @@ resource "aws_security_group" "compute_environment" {
   }
 }
 
-## Batch Compute environment
+## batch compute environment
 
 resource "aws_batch_compute_environment" "compute_environment" {
   compute_environment_name = local.compute_env_name
@@ -65,7 +65,7 @@ resource "aws_batch_compute_environment" "compute_environment" {
   #depends_on   = [aws_iam_role_policy_attachment.service_role]
 }
 
-#Batch Job Queue
+#batch job queue
 
 resource "aws_batch_job_queue" "job_queue" {
   name     = local.job_queue_name
