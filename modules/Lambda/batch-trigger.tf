@@ -1,5 +1,5 @@
 #create batch trigge source code zip 
-data "archive_file" "zip_python_code" {
+data "archive_file" "batch_trigger_source_code" {
   type        = "zip"
   source_dir  = "./batch-trigger-source"
   output_path = "./batch-trigger-source"
@@ -58,12 +58,18 @@ resource "aws_iam_role_policy" "lambda_execution" {
   role   = aws_iam_role.lambda_execution.id
 }
 
-# create lambda function 
-resource "aws_lambda_function" "function" {
-    filename = data.archive_file.zip_python_code.output_path
-    source_code_hash = data.archive_file.zip_python_code.output_base64sha256
+resource "aws_iam_role_policy_attachment" "lambda_execution" {
+  for_each = toset( [ "arn:aws:iam::aws:policy/AWSBatchFullAccess" ] )  
+  role       =  aws_iam_role.lambda_execution.name
+  policy_arn = each.key
+}
+
+# batch trigger lambda function 
+resource "aws_lambda_function" "batch_trigger" {
     function_name = "sagerx-${var.department}-${var.env}-low-util-workspaces"
-    role = aws_iam_role.lambda_cloudwatch_log_role.arn
+    filename = data.archive_file.batch_trigger_source_code.output_path
+    source_code_hash = data.archive_file.batch_trigger_source_code.output_base64sha256
+    role = aws_iam_role.lambda_execution.arn
     handler = var.handler
     runtime = var.runtime 
     environment {
