@@ -121,7 +121,7 @@ variable "batch_trigger_src_dir" {
 variable "batch_trigger_src_op_path" {
   description = "batch jobtrigger source .zip file path"
   type = string
-  default = "./batch-trigger-src"
+  default = "batch-trigger-src"
 }
 
 variable "batch_trigger_function_name" {
