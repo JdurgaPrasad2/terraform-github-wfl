@@ -9,7 +9,7 @@ data "archive_file" "lambda_source_code" {
 # lambda function 
 
 resource "aws_lambda_function" "function" {
-    function_name = "${var.project}-${var.function_name}-${var.env}"
+    function_name = var.function_name
     filename = data.archive_file.lambda_source_code.output_path
     source_code_hash = data.archive_file.lambda_source_code.output_base64sha256
     role = aws_iam_role.lambda_execution.arn
