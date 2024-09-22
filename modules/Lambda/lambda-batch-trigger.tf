@@ -2,8 +2,8 @@
 
 data "archive_file" "batch_trigger_source_code" {
   type        = "zip"
-  source_dir  = "./batch-trigger-source"
-  output_path = "./batch-trigger-source.zip"
+  source_dir  = "./batch-trigger-src"
+  output_path = "./batch-trigger-src.zip"
 } 
 
 # batch trigger lambda function 
