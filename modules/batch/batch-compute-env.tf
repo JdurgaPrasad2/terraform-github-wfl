@@ -1,3 +1,4 @@
+/*
 locals {
   compute_env_name      = "${var.project}_${var.compute_env_name}_${var.env}"
 }
@@ -36,3 +37,4 @@ resource "aws_batch_compute_environment" "compute_environment" {
   type         = var.compute_env_type
   #depends_on   = [aws_iam_role_policy_attachment.service_role]
 }
+*/
