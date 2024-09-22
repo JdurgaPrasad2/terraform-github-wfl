@@ -50,3 +50,8 @@ variable "output_path" {
   type = string
 }
 
+variable "output_path" {
+  description = "source .zip file path"
+  type = string
+}
+
