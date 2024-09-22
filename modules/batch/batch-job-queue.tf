@@ -1,12 +1,8 @@
 
-locals {
-  job_queue_name        = "${var.project}-${var.job_queue_name}-${var.env}"
-}
-
 #batch job queue
 
 resource "aws_batch_job_queue" "job_queue" {
-  name     = local.job_queue_name
+  name     = var.job_queue_name
   state    = var.job_queue_state
   priority = 1
 
@@ -16,7 +12,7 @@ resource "aws_batch_job_queue" "job_queue" {
   }
 
   tags = {
-    "Name"                           = "${local.job_queue_name}"
+    "Name"                           = "${var.job_queue_name}"
     "Project"                        = "${var.project}"
     "Environment"                    = "${var.env}"
   }
