@@ -85,18 +85,18 @@ variable "job_def_type" {
 variable "compute_env_name" {
   description = "batch compute environment name"
   type = string
-  default = "batch_compute_env"
+  default = "batch-compute-env"
 }
 
 variable "job_queue_name" {
   description = "job queue name"
   type = string
-  default = "batch_job_queue"
+  default = "batch-job-queue"
 }
 
 variable "job_def_name" {
   description = "job definition name"
   type = string
-  default = "batch_job_def"
+  default = "batch-job-def"
 }
 
