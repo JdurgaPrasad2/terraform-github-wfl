@@ -20,8 +20,9 @@ resource "aws_security_group" "compute_environment" {
 ## batch compute environment
 
 resource "aws_batch_compute_environment" "compute_environment" {
-  compute_environment_name = local.compute_env_name
+  depends_on   = [aws_iam_role_policy_attachment.batch_service]  
 
+  compute_environment_name = local.compute_env_name
   compute_resources {
     max_vcpus = 4
 
