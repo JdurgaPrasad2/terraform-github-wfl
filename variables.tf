@@ -109,7 +109,7 @@ variable "handler" {
 variable "runtime" {
   description = "runtime"
   type = string
-  default = "pyhton3.12"
+  default = "python3.12"
 }
 
 variable "batch_trigger_src_dir" {
