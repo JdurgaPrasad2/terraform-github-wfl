@@ -14,4 +14,11 @@ resource "aws_batch_job_queue" "job_queue" {
     order               = 1
     compute_environment = aws_batch_compute_environment.compute_environment.arn
   }
+
+  tags = {
+    "Name"                           = "${local.job_queue_name}"
+    "Project"                        = "${var.project}"
+    "Environment"                    = "${var.env}"
+  }
+
 }
