@@ -11,5 +11,6 @@ module "test-s3" {
 
 module "batch" {
   source = "./modules/batch"
-  project            = var.project
+  project               = var.project
+  region                = var.region
 }
