@@ -8,7 +8,7 @@ data "archive_file" "lambda_source_code" {
 
 # lambda function 
 
-resource "aws_lambda_function" "batch_trigger" {
+resource "aws_lambda_function" "function" {
     function_name = "${var.project}-${var.function_name}-${var.env}"
     filename = data.archive_file.lambda_source_code.output_path
     source_code_hash = data.archive_file.lambda_source_code.output_base64sha256
