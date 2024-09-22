@@ -40,13 +40,13 @@ variable "job_name" {
   type = string
 }
 
-variable "batch_trigger_src_dir" {
-  description = "batch jobtrigger source dir"
+variable "source_dir" {
+  description = "source dir"
   type = string
 }
 
-variable "batch_trigger_src_op_path" {
-  description = "batch jobtrigger source .zip file path"
+variable "output_path" {
+  description = "source .zip file path"
   type = string
 }
 
