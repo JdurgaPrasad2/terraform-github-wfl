@@ -10,7 +10,7 @@ module "test-s3" {
 */
 
 module "batch" {
-  source = "./modules/batch"
+  source                = "./modules/batch"
   project               = var.project
   region                = var.region
 }
