@@ -43,9 +43,8 @@ resource "aws_cloudwatch_event_target" "check_target" {
 {
   "workspace_stale_days": "${var.workspace_stale_days}"
 }
-JSON  */
+JSON   
 }
-*/
 */
 /*
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
