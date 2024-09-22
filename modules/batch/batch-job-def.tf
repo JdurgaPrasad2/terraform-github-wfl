@@ -1,11 +1,8 @@
 
-locals {
-  job_def_name          = "${var.project}-${var.job_def_name}-${var.env}"
-}
-
 #batch job definition
 
 resource "aws_batch_job_definition" "job_definition" {
+  name                 = var.job_def_name
   container_properties = jsonencode({
     command          = ["echo", "override this command from lambda function"]
     environment      = []
@@ -30,7 +27,6 @@ resource "aws_batch_job_definition" "job_definition" {
     ulimits = []
     volumes = []
   })
-  name                  = local.job_def_name
   parameters            = {}
   platform_capabilities = ["FARGATE"]
   propagate_tags        = false
@@ -42,7 +38,7 @@ resource "aws_batch_job_definition" "job_definition" {
     attempt_duration_seconds = 300
   }
   tags = {
-    "Name"                           = "${local.job_def_name}"
+    "Name"                           = "${var.job_def_name}"
     "Project"                        = "${var.project}"
     "Environment"                    = "${var.env}"
   }
