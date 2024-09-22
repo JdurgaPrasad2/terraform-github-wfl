@@ -34,7 +34,7 @@ variable "job_queue_state" {
   description = "job queue state"
   type = string
 }
-/*
+
 variable "ecr_app_code_image" {
   description = "ecr - app code image"
   type = string
@@ -51,7 +51,7 @@ variable "job_def_type" {
   type = string
   default = "container"
 }
-*/
+
 variable "compute_env_name" {
   description = "batch compute environment name"
   type = string
@@ -61,9 +61,8 @@ variable "job_queue_name" {
   description = "job queue name"
   type = string
 }
-/*
+
 variable "job_def_name" {
   description = "job definition name"
   type = string
 }
-*/
