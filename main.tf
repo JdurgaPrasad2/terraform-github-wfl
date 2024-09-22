@@ -31,13 +31,13 @@ module "lambda-batch-trigger" {
   project                 = var.project
   region                  = var.region  
   env                     = var.env
-  function_name         = "${var.project}-${var.compute_env_name}-${var.env}"
+  function_name         = "${var.project}-${var.batch_trigger_function_name}-${var.env}"
   source_dir              = var.batch_trigger_src_dir
   output_path             = var.batch_trigger_src_op_path
   job_queue_name          = "${var.project}-${var.job_queue_name}-${var.env}"
   job_def_name            = "${var.project}-${var.job_def_name}-${var.env}"
   handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
-  job_name                = "${var.project}-${var.job_name}-${var.env}"
+  job_name                = "${var.project}-${var.batch_trigger_job_name}-${var.env}"
   #schedule-expression     = var.schedule-expression
 }
