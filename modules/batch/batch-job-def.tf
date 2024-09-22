@@ -7,7 +7,7 @@ locals {
 
 resource "aws_batch_job_definition" "job_definition" {
   container_properties = jsonencode({
-    command          = ["echo", "override this command"]
+    command          = ["echo", "override this command from lambda function"]
     environment      = []
     executionRoleArn = aws_iam_role.batch_job_exec.arn
     fargatePlatformConfiguration = {
@@ -34,13 +34,17 @@ resource "aws_batch_job_definition" "job_definition" {
   parameters            = {}
   platform_capabilities = ["FARGATE"]
   propagate_tags        = false
-  tags                  = {}
-  tags_all              = {}
   type                  = var.job_def_type
   retry_strategy {
     attempts = 1
   }
   timeout {
     attempt_duration_seconds = 300
+  }
+
+  tags = {
+    "Name"                           = "${local.job_def_name}"
+    "Project"                        = "${var.project}"
+    "Environment"                    = "${var.env}"
   }
 }
