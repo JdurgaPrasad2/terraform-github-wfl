@@ -14,9 +14,9 @@ module "batch" {
   project               = var.project
   region                = var.region
   env                   = var.env
-  compute_env_name      = var.compute_env_name
-  job_queue_name        = var.job_queue_name
-  job_def_name          = var.job_def_name
+  compute_env_name      = "${var.project}-${var.compute_env_name}-${var.env}"
+  job_queue_name        = "${var.project}-${var.job_queue_name}-${var.env}"
+  job_def_name          = "${var.project}-${var.job_def_name}-${var.env}"
   subnet_ids            = var.subnet_ids
   compute_resource_type = var.compute_resource_type
   compute_env_type      = var.compute_env_type
@@ -27,13 +27,14 @@ module "batch" {
 }
 
 module "lambda-batch-trigger" {
-  source                  = "./modules/lambda"
+  source                  = "./modules/Lambda"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
-  job_queue_name          = var.job_queue_name
-  job_def_name            = var.job_def_name
+  job_queue_name          = "${var.project}-${var.job_queue_name}-${var.env}"
+  job_def_name            = "${var.project}-${var.job_def_name}-${var.env}"
   handler                 = "batch-trigger-source.lambda_handler"
   runtime                 = var.runtime
+  job_name                = "${var.project}-${var.job_name}-${var.env}"
   #schedule-expression     = var.schedule-expression
 }
