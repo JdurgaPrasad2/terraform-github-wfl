@@ -1,13 +1,13 @@
 # local varibales
 
 locals {
-  compute_env_name      = "${var.project}_${var.compute_env_name}_${var.env}"
+  compute_env_name      = "${var.project}-${var.compute_env_name}-${var.env}"
 }
 
 # security group for batch compute environment 
 
 resource "aws_security_group" "compute_environment" {
-  name = "${var.project}_batch_compute_env_${var.env}"
+  name = "${var.project}-batch-compute-env-${var.env}"
 
   egress {
     from_port   = 0
