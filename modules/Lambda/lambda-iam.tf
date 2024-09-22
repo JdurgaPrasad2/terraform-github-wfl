@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "lambda_execution" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:311324824904:log-group:/aws/lambda/${aws_lambda_function.batch_trigger.id}:*"]
+    resources = ["arn:aws:logs:${var.region}:311324824904:log-group:/aws/lambda/${aws_lambda_function.function.id}:*"]
   }
 
   statement {
