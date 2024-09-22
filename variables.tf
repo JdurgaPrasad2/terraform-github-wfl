@@ -124,6 +124,12 @@ variable "batch_trigger_src_op_path" {
   default = "./batch-trigger-src"
 }
 
+variable "batch_trigger_function_name" {
+  description = "batch trigger function name"
+  type = string
+  default = ""
+}
+
 variable "job_name" {
   description = "batch job name"
   type = string
