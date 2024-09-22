@@ -56,13 +56,13 @@ variable "compute_env_type" {
   type = string
   default = "MANAGED"
 }
-/*
+
 variable "job_queue_state" {
   description = "job queue state disabled or enabled"
   type = string
   default = "ENABLED"
 }
-
+/*
 variable "ecr_app_code_image" {
   description = "ecr - app code image"
   type = string
@@ -87,13 +87,13 @@ variable "compute_env_name" {
   type = string
   default = "batch_compute_env"
 }
-/*
+
 variable "job_queue_name" {
   description = "job queue name"
   type = string
-  default = ""
+  default = "batch_job_queue"
 }
-
+/*
 variable "job_def_name" {
   description = "job definition name"
   type = string
