@@ -33,10 +33,7 @@ module "lambda-batch-trigger" {
   env                     = var.env
   job_queue_name          = var.job_queue_name
   job_def_name            = var.job_def_name
-  zip-file-name           = "batch-trigger-source.zip"
   handler                 = "batch-trigger-source.lambda_handler"
   runtime                 = var.runtime
-  schedule-expression     = var.schedule-expression
-  workspace_stale_days    = var.workspace_stale_days
-  cross_account_role_arn  = var.cross_account_role_arn
+  #schedule-expression     = var.schedule-expression
 }
