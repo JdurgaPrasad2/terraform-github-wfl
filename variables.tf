@@ -109,7 +109,7 @@ variable "handler" {
 variable "runtime" {
   description = "runtime"
   type = string
-  default = ""
+  default = "pyhton3.12"
 }
 
 variable "job_name" {
