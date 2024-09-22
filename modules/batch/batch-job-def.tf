@@ -1,6 +1,6 @@
 
 locals {
-  job_def_name          = "${var.project}_${var.job_def_name}_${var.env}"
+  job_def_name          = "${var.project}-${var.job_def_name}-${var.env}"
 }
 
 #batch job definition
