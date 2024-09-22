@@ -74,11 +74,13 @@ resource "aws_lambda_function" "batch_trigger" {
     runtime = var.runtime 
     environment {
       variables = {
-        workspace_stale_days = var.workspace_stale_days
+        job_def_name   = var.job_def_name
+        job_queue_name = var.job_queue_name
+        job_name       = var.job_name
       }
     }
 }
-
+/*
 #create cloudwatch event bridge rule 
 resource "aws_cloudwatch_event_rule" "schedule" {
     name = "sagerx-${var.department}-${var.env}-workspace-low-util-rule"
@@ -105,3 +107,4 @@ resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
     principal = "events.amazonaws.com"
     source_arn = aws_cloudwatch_event_rule.schedule.arn
 }
+*/
