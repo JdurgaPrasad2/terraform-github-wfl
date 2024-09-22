@@ -38,6 +38,6 @@ module "lambda-batch-trigger" {
   job_def_name            = "${var.project}-${var.job_def_name}-${var.env}"
   handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
-  job_name                = "${var.project}-${var.batch_trigger_job_name}-${var.env}"
+  job_name                = "${var.project}-${var.job_name}-${var.env}"
   #schedule-expression     = var.schedule-expression
 }
