@@ -13,9 +13,11 @@ module "batch" {
   source                = "./modules/batch"
   project               = var.project
   region                = var.region
-  compute_env_name       = var.compute_env_name
   env                   = var.env
+  compute_env_name      = var.compute_env_name
+  job_queue_name        = var.job_queue_name
   subnet_ids            = var.subnet_ids
   compute_resource_type = var.compute_resource_type
   compute_env_type      = var.compute_env_type
+  job_queue_state       = var.job_queue_state
 }
