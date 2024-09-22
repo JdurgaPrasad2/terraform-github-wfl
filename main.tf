@@ -8,3 +8,8 @@ module "test-s3" {
   region                = var.region
 }
 */
+
+module "batch" {
+  source = "./modules/batch"
+  project            = var.project
+}
