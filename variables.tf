@@ -112,6 +112,18 @@ variable "runtime" {
   default = "pyhton3.12"
 }
 
+variable "source_dir" {
+  description = "batch jobtrigger source dir"
+  type = string
+  default = "./batch-trigger-src"
+}
+
+variable "output_path" {
+  description = "batch jobtrigger source .zip file path"
+  type = string
+  default = "./batch-trigger-src.zip"
+}
+
 variable "job_name" {
   description = "batch job name"
   type = string
