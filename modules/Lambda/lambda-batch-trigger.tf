@@ -9,7 +9,7 @@ data "archive_file" "batch_trigger_source_code" {
 # batch trigger lambda function 
 
 resource "aws_lambda_function" "batch_trigger" {
-    function_name = "sagerx-${var.department}-${var.env}-low-util-workspaces"
+    function_name = "${var.project}-low-util-workspaces-${var.env}"
     filename = data.archive_file.batch_trigger_source_code.output_path
     source_code_hash = data.archive_file.batch_trigger_source_code.output_base64sha256
     role = aws_iam_role.lambda_execution.arn
