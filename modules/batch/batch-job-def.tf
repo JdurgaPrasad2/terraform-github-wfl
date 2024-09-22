@@ -1,4 +1,4 @@
-
+/*
 locals {
   job_def_name          = "${var.project}_${var.job_def_name}_${var.env}"
 }
@@ -44,3 +44,4 @@ resource "aws_batch_job_definition" "job_definition" {
     attempt_duration_seconds = 300
   }
 }
+*/
