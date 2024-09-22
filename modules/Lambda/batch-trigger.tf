@@ -6,7 +6,7 @@ data "archive_file" "zip_python_code" {
 } 
 
 #lambda service assume policy
-data "aws_iam_policy_document" "lambda_cloudwatch_logs_assume" {
+data "aws_iam_policy_document" "lambda_service_assume" {
   statement {
     actions = ["sts:AssumeRole"]
 
@@ -17,8 +17,8 @@ data "aws_iam_policy_document" "lambda_cloudwatch_logs_assume" {
   }
 }
 
-#lambda to cloudwatch-log role creation
-resource "aws_iam_role" "lambda_cloudwatch_log_role" {
+#lambda service role  
+resource "aws_iam_role" "lambda_service" {
   name               = "sagerx-${var.department}-${var.env}-lambda-cloudwatch-log-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_cloudwatch_logs_assume.json
 }
