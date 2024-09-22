@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "batch_service_assume" {
 }
 
 resource "aws_iam_role" "batch_service" {
-  name               = "${var.project}_batch_service_role"
+  name               = "${var.project}-batch-service-role"
   assume_role_policy = data.aws_iam_policy_document.batch_service_assume.json
 }
 
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "batch_job_exec_assume" {
 }
 
 resource "aws_iam_role" "batch_job_exec" {
-  name               = "${var.project}_batch_job_exec_assume_role"
+  name               = "${var.project}-batch-job-exec-assume-role"
   assume_role_policy = data.aws_iam_policy_document.batch_job_exec_assume.json
 }
 
