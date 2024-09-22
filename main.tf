@@ -16,8 +16,12 @@ module "batch" {
   env                   = var.env
   compute_env_name      = var.compute_env_name
   job_queue_name        = var.job_queue_name
+  job_def_name          = var.job_def_name
   subnet_ids            = var.subnet_ids
   compute_resource_type = var.compute_resource_type
   compute_env_type      = var.compute_env_type
   job_queue_state       = var.job_queue_state
+  ecr_app_code_image    = var.ecr_app_code_image
+  assign_public_ip      = var.assign_public_ip
+  job_def_type          = var.job_def_type
 }
