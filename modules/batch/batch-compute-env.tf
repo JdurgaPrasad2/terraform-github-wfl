@@ -1,13 +1,7 @@
-# local varibales
-
-locals {
-  compute_env_name      = "${var.project}-${var.compute_env_name}-${var.env}"
-}
-
 # security group for batch compute environment 
 
 resource "aws_security_group" "compute_environment" {
-  name = "${var.project}-batch-compute-env-${var.env}"
+  name = var.compute_env_name
 
   egress {
     from_port   = 0
@@ -22,7 +16,7 @@ resource "aws_security_group" "compute_environment" {
 resource "aws_batch_compute_environment" "compute_environment" {
   depends_on   = [aws_iam_role_policy_attachment.batch_service]  
 
-  compute_environment_name = local.compute_env_name
+  compute_environment_name = var.compute_env_name
   compute_resources {
     max_vcpus = 4
 
@@ -39,7 +33,7 @@ resource "aws_batch_compute_environment" "compute_environment" {
   type         = var.compute_env_type
 
   tags = {
-    "Name"                           = "${local.compute_env_name}"
+    "Name"                           = "${var.compute_env_name}"
     "Project"                        = "${var.project}"
     "Environment"                    = "${var.env}"
   }
