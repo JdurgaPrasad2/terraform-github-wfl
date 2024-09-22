@@ -1,4 +1,5 @@
 # variables.tf
+/*
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
@@ -8,12 +9,12 @@ variable "region" {
   description = "Target region for the deployment"
   type        = string
 }
-
+*/
 variable "project" {
   description = "Department requesting the resource"
   type        = string
 }
-
+/*
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
@@ -65,3 +66,4 @@ variable "job_def_name" {
   description = "job definition name"
   type = string
 }
+*/
