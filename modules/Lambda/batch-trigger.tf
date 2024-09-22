@@ -18,19 +18,19 @@ data "aws_iam_policy_document" "lambda_service_assume" {
 }
 
 #lambda service role  
-resource "aws_iam_role" "lambda_service" {
-  name               = "sagerx-${var.department}-${var.env}-lambda-cloudwatch-log-role"
-  assume_role_policy = data.aws_iam_policy_document.lambda_cloudwatch_logs_assume.json
+resource "aws_iam_role" "lambda_execution" {
+  name               = "${var.project}-lambda-execution-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_service_assume.json
 }
 
-#lambda to cloudwatch-log policy creation  
-data "aws_iam_policy_document" "lambda_cloudwatch_log_policy" {
+#lambda execution policy
+data "aws_iam_policy_document" "lambda_execution" {
   statement {
     actions = [
       "logs:CreateLogGroup",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:${var.account}:*"]
+    resources = ["arn:aws:logs:${var.region}:311324824904:*"]
   }
 
   statement {
@@ -39,13 +39,12 @@ data "aws_iam_policy_document" "lambda_cloudwatch_log_policy" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:${var.account}:log-group:/aws/lambda/${aws_lambda_function.function.id}:*"]
+    resources = ["arn:aws:logs:${var.region}:311324824904:log-group:/aws/lambda/${aws_lambda_function.batch_trigger.id}:*"]
   }
 
   statement {
     actions = [
-      "workspaces:Describe*",
-      "lambda:InvokeFunction",
+      "lambda:InvokeFunction"
     ]
 
     resources = ["*"]
@@ -53,10 +52,10 @@ data "aws_iam_policy_document" "lambda_cloudwatch_log_policy" {
 
 }
 
-resource "aws_iam_role_policy" "lambda_cloudwatch_log_policy" {
-  name   = "sagerx-${var.department}-${var.env}-lambda-cloudwatch-log-policy"
-  policy = data.aws_iam_policy_document.lambda_cloudwatch_log_policy.json
-  role   = aws_iam_role.lambda_cloudwatch_log_role.id
+resource "aws_iam_role_policy" "lambda_execution" {
+  name   = "${var.project}-lambda-execution-policy"
+  policy = data.aws_iam_policy_document.lambda_execution.json
+  role   = aws_iam_role.lambda_execution.id
 }
 
 # create lambda function 
