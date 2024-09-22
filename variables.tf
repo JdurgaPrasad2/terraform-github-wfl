@@ -2,7 +2,7 @@
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
-  default     = "test"
+  default     = "dev"
 }
 
 variable "region" {
@@ -10,7 +10,7 @@ variable "region" {
   type        = string
   default     = "us-east-1"
 }
-
+/*
 variable "department" {
   description = "Department requesting the resource"
   type        = string
@@ -27,7 +27,7 @@ variable "bucket_prefix" {
   type = string
   default = "testprefix/"
 }
-
+*/
 ##
 ##aws batch variables
 ##
@@ -56,7 +56,7 @@ variable "compute_env_type" {
   type = string
   default = "MANAGED"
 }
-
+/*
 variable "job_queue_state" {
   description = "job queue state disabled or enabled"
   type = string
@@ -80,13 +80,14 @@ variable "job_def_type" {
   type = string
   default = "container"
 }
+*/
 
 variable "compute_env_name" {
   description = "batch compute environment name"
   type = string
-  default = ""
+  default = "batch_compute_env"
 }
-
+/*
 variable "job_queue_name" {
   description = "job queue name"
   type = string
@@ -98,3 +99,4 @@ variable "job_def_name" {
   type = string
   default = ""
 }
+*/
