@@ -13,4 +13,5 @@ module "batch" {
   source                = "./modules/batch"
   project               = var.project
   region                = var.region
+  
 }
