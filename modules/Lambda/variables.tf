@@ -39,3 +39,14 @@ variable "job_name" {
   description = "batch job name"
   type = string
 }
+
+variable "source_dir" {
+  description = "batch jobtrigger source dir"
+  type = string
+}
+
+variable "output_path" {
+  description = "batch jobtrigger source .zip file path"
+  type = string
+}
+
