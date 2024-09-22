@@ -41,7 +41,6 @@ resource "aws_batch_job_definition" "job_definition" {
   timeout {
     attempt_duration_seconds = 300
   }
-
   tags = {
     "Name"                           = "${local.job_def_name}"
     "Project"                        = "${var.project}"
