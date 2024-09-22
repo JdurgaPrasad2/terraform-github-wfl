@@ -1,6 +1,6 @@
 
 locals {
-  job_queue_name        = "${var.project}_${var.job_queue_name}_${var.env}"
+  job_queue_name        = "${var.project}-${var.job_queue_name}-${var.env}"
 }
 
 #batch job queue
