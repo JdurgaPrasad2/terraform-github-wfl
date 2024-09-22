@@ -1,10 +1,10 @@
 # variables.tf
-/*
+
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
 }
-*/
+
 variable "region" {
   description = "Target region for the deployment"
   type        = string
@@ -14,7 +14,7 @@ variable "project" {
   description = "Department requesting the resource"
   type        = string
 }
-/*
+
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
@@ -29,7 +29,7 @@ variable "compute_env_type" {
   description = "batch compute environment type"
   type = string
 }
-
+/*
 variable "job_queue_state" {
   description = "job queue state"
   type = string
@@ -51,12 +51,12 @@ variable "job_def_type" {
   type = string
   default = "container"
 }
-
+*/
 variable "compute_env_name" {
   description = "batch compute environment name"
   type = string
 }
-
+/*
 variable "job_queue_name" {
   description = "job queue name"
   type = string
