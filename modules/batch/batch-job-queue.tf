@@ -1,3 +1,4 @@
+/*
 locals {
   job_queue_name        = "${var.project}_${var.job_queue_name}_${var.env}"
 }
@@ -14,3 +15,4 @@ resource "aws_batch_job_queue" "job_queue" {
     compute_environment = aws_batch_compute_environment.compute_environment.arn
   }
 }
+*/
