@@ -3,7 +3,7 @@
 data "archive_file" "lambda_source_code" {
   type        = "zip"
   source_dir  = var.source_dir
-  output_path = "${var.output_path}.zip"
+  output_path = "./${var.output_path}.zip"
 } 
 
 # lambda function 
