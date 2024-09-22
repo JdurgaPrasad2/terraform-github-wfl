@@ -115,5 +115,5 @@ variable "runtime" {
 variable "job_name" {
   description = "batch job name"
   type = string
-  default = ""
+  default = "batch-job"
 }
