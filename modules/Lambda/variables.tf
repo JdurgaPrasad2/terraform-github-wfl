@@ -50,8 +50,8 @@ variable "output_path" {
   type = string
 }
 
-variable "output_path" {
-  description = "source .zip file path"
+variable "function_name" {
+  description = "lambda function name"
   type = string
 }
 
