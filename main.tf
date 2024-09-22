@@ -31,6 +31,8 @@ module "lambda-batch-trigger" {
   project                 = var.project
   region                  = var.region  
   env                     = var.env
+  source_dir              = var.source_dir
+  output_path             = var.output_path
   job_queue_name          = "${var.project}-${var.job_queue_name}-${var.env}"
   job_def_name            = "${var.project}-${var.job_def_name}-${var.env}"
   handler                 = "batch-trigger-source.lambda_handler"
