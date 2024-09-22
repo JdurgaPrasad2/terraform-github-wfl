@@ -101,16 +101,19 @@ variable "job_def_name" {
 }
 
 variable "handler" {
-    description = "function handler"
-    type = string
+  description = "function handler"
+  type = string
+  default = ""
 }
 
 variable "runtime" {
-    description = "runtime"
-    type = string
+  description = "runtime"
+  type = string
+  default = ""
 }
 
 variable "job_name" {
   description = "batch job name"
   type = string
+  default = ""
 }
