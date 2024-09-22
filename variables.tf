@@ -100,3 +100,17 @@ variable "job_def_name" {
   default = "batch-job-def"
 }
 
+variable "handler" {
+    description = "function handler"
+    type = string
+}
+
+variable "runtime" {
+    description = "runtime"
+    type = string
+}
+
+variable "job_name" {
+  description = "batch job name"
+  type = string
+}
