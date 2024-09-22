@@ -30,7 +30,9 @@ resource "aws_cloudwatch_event_rule" "schedule" {
     name = "sagerx-${var.department}-${var.env}-workspace-low-util-rule"
     description = "workspace low util rule "
     schedule_expression = var.schedule-expression
-}
+} 
+*/
+/*
 #attach event target for event bridge rule
 resource "aws_cloudwatch_event_target" "check_target" {
     rule = aws_cloudwatch_event_rule.schedule.name
@@ -43,6 +45,7 @@ resource "aws_cloudwatch_event_target" "check_target" {
 }
 JSON  */
 }
+*/
 */
 /*
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
