@@ -8,7 +8,7 @@ module "test-s3" {
   region                = var.region
 }
 */
-/*
+
 module "batch" {
   source                = "./modules/batch"
   project               = var.project
@@ -25,7 +25,7 @@ module "batch" {
   assign_public_ip      = var.assign_public_ip
   job_def_type          = var.job_def_type
 }
-*/
+
 module "lambda-batch-trigger" {
   source                  = "./modules/Lambda"
   project                 = var.project
