@@ -1,8 +1,5 @@
 import json
 
-def testfunction(event, context):
+def Square(X):
     # TODO implement
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Hello from Lambda! it is from file-2')
-    }
+    return (X * X)
