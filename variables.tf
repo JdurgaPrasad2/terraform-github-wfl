@@ -121,7 +121,7 @@ variable "source_dir" {
 variable "output_path" {
   description = "batch jobtrigger source .zip file path"
   type = string
-  default = "./batch-trigger-src.zip"
+  default = "./batch-trigger-src"
 }
 
 variable "job_name" {
