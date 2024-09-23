@@ -35,7 +35,7 @@ module "batch" {
 }
 
 module "lambda-batch-trigger" {
-  source                  = "./modules/Lambda"
+  source                  = "./modules/lambda"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
