@@ -10,14 +10,14 @@ module "test-s3" {
 */
 
 locals {
-  compute_env_name      = "${var.project}-${var.compute_env_name}-${var.env}"
-  job_queue_name        = "${var.project}-${var.job_queue_name}-${var.env}"
-  job_def_name          = "${var.project}-${var.job_def_name}-${var.env}"
-  job_name              = "${var.project}-${var.job_name}-${var.env}"
-  function_name         = "${var.project}-${var.batch_trigger_function_name}-${var.env}"
-  event_rule_name       = "${var.project}-${var.event_rule_name}-${var.env}"
-  event_rule_desc       = ""
-  event_schedule        = "rate(10 min)"
+  compute_env_name                    = "${var.project}-${var.compute_env_name}-${var.env}"
+  job_queue_name                      = "${var.project}-${var.job_queue_name}-${var.env}"
+  job_def_name                        = "${var.project}-${var.job_def_name}-${var.env}"
+  job_name                            = "${var.project}-${var.job_name}-${var.env}"
+  batch_trigger_function_name         = "${var.project}-${var.batch_trigger_function_name}-${var.env}"
+  batch_trigger_event_rule_name       = "${var.project}-${var.batch_trigger_event_rule_name}-${var.env}"
+  batch_trigger_event_rule_desc       = "batch trigger event rule name"
+  batch_trigger_event_schedule        = "${var.batch_trigger_event_schedule}"
 }
 
 module "batch" {
@@ -42,7 +42,7 @@ module "lambda-batch-trigger" {
   project                 = var.project
   region                  = var.region  
   env                     = var.env
-  function_name           = local.function_name
+  function_name           = local.batch_trigger_function_name
   source_dir              = var.batch_trigger_src_dir
   output_path             = var.batch_trigger_src_op_path
   job_queue_name          = local.job_queue_name
@@ -53,18 +53,13 @@ module "lambda-batch-trigger" {
   #schedule-expression     = var.schedule-expression
 }
 
-module "lambda-batch-trigger" {
-  source                  = "./modules/lambda"
+module "eventbridge-rule-batch-trigger" {
+  source                  = "./modules/eventbridge"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
-  function_name           = local.function_name
-  source_dir              = var.batch_trigger_src_dir
-  output_path             = var.batch_trigger_src_op_path
-  job_queue_name          = local.job_queue_name
-  job_def_name            = local.job_def_name
-  handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
-  runtime                 = var.runtime
-  job_name                = local.job_name
-  #schedule-expression     = var.schedule-expression
+  function_name           = local.batch_trigger_function_name
+  event_rule_name         = local.batch_trigger_event_rule_name
+  event_rule_desc         = local.batch_trigger_event_rule_desc
+  event_schedule          = local.batch_trigger_event_schedule
 }
