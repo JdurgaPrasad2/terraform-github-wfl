@@ -9,7 +9,7 @@ resource "aws_cloudwatch_event_rule" "event_rule" {
 resource "aws_cloudwatch_event_target" "event_target" {
     rule      = aws_cloudwatch_event_rule.event_rule.name
     target_id = var.function_name
-    arn       = aws_lambda_function.function.arn
+    arn       = var.function_arn
 }
 
 #lambda invoke permission to event rule
