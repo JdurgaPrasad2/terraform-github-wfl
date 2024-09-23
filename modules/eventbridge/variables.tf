@@ -15,38 +15,18 @@ variable "project" {
   type        = string
 }
 
-variable "handler" {
-    description = "function handler"
+variable "event_rule_name" {
+    description = "event rule name"
     type = string
 }
 
-variable "runtime" {
-    description = "runtime"
+variable "event_rule_desc" {
+    description = "event rule description"
     type = string
 }
 
-variable "job_queue_name" {
-  description = "job queue name"
-  type = string
-}
-
-variable "job_def_name" {
-  description = "job definition name"
-  type = string
-}
-
-variable "job_name" {
-  description = "batch job name"
-  type = string
-}
-
-variable "source_dir" {
-  description = "source dir"
-  type = string
-}
-
-variable "output_path" {
-  description = "source .zip file path"
+variable "event_schedule" {
+  description = "event schedule"
   type = string
 }
 
