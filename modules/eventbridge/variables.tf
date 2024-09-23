@@ -34,3 +34,8 @@ variable "function_name" {
   description = "lambda function name"
   type = string
 }
+
+variable "function_arn" {
+  description = "lambda function arn"
+  type = string
+}
