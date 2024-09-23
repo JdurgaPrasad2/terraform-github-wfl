@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "batch_job_exec_assume" {
 }
 
 resource "aws_iam_role" "batch_job_exec" {
-  name               = "${var.project}-batch-job-exec-assume-role"
+  name               = "${var.project}-batch-job-exec-role"
   assume_role_policy = data.aws_iam_policy_document.batch_job_exec_assume.json
 }
 
