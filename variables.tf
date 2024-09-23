@@ -130,6 +130,18 @@ variable "batch_trigger_function_name" {
   default = "batch-trigger"
 }
 
+variable "batch_trigger_event_rule_name" {
+  description = "batch trigger event rule name"
+  type = string
+  default = "batch-trigger-event-rule"
+}
+
+variable "batch_trigger_event_schedule" {
+  description = "batch trigger event schedule"
+  type = string
+  default = "batch-trigger-event-schedule"
+}
+
 variable "job_name" {
   description = "batch job name"
   type = string
