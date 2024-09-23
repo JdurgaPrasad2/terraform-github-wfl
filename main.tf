@@ -37,7 +37,7 @@ module "batch" {
   job_def_type          = var.job_def_type
 }
 
-module "lambda-batch-trigger" {
+module "lambda_batch_trigger" {
   source                  = "./modules/lambda"
   project                 = var.project
   region                  = var.region  
@@ -50,15 +50,15 @@ module "lambda-batch-trigger" {
   handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
   job_name                = local.job_name
-  #schedule-expression     = var.schedule-expression
 }
 
-module "eventbridge-rule-batch-trigger" {
+module "eventbridge_rule_batch_trigger" {
   source                  = "./modules/eventbridge"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
   function_name           = local.batch_trigger_function_name
+  function_arn           =  module.lambda_batch_trigger.lambda_arn
   event_rule_name         = local.batch_trigger_event_rule_name
   event_rule_desc         = local.batch_trigger_event_rule_desc
   event_schedule          = local.batch_trigger_event_schedule
