@@ -1,4 +1,3 @@
-
 #event bridge-event rule 
 resource "aws_cloudwatch_event_rule" "event_rule" {
     name                = var.event_rule_name
