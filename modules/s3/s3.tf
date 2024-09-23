@@ -1,12 +1,14 @@
 resource "aws_s3_bucket" "resource" {
-  bucket =  lower("testap-${var.department}-${var.env}")
+  bucket =  lower(var.bucket_name)
 }
 
+/*
 resource "aws_s3_object" "object" {
     count = var.bucket_prefix == "" ? 0 : 1
     bucket = "${aws_s3_bucket.resource.id}"
     key    = var.bucket_prefix
-}
+} 
+*/
 
 resource "aws_s3_bucket_public_access_block" "block" {
   bucket                  = aws_s3_bucket.resource.id
