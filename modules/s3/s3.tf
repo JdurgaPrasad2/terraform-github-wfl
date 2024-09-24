@@ -23,7 +23,7 @@ resource "aws_s3_bucket_notification" "bucket_sqs_notification" {
   bucket = aws_s3_bucket.resource.id
   queue {
     queue_arn     = var.sqs_queue_arn
-    events        = var.s3_events
+    events        = var.bucket_events
     filter_suffix = var.filter_suffix
     filter_prefix = var.filter_prefix
   }
