@@ -148,7 +148,7 @@ variable "job_name" {
   default = "batch-job"
 }
 ## s3 variables
-variable "bucket_name" {
+variable "data_ingestion_bucket_name" {
   description = "s3 bucket name"
   type = string
   default = "data-ingestion"  
