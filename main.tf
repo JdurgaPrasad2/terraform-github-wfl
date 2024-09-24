@@ -63,3 +63,17 @@ module "eventbridge_rule_batch_trigger" {
   event_rule_desc         = local.batch_trigger_event_rule_desc
   event_schedule          = local.batch_trigger_event_schedule
 }
+
+module "data-ingestion-bucket" {
+  source                  = "./modules/s3"
+  project                 = var.project
+  region                  = var.region  
+  env                     = var.env
+  function_name           = local.batch_trigger_function_name
+  function_arn           =  module.lambda_batch_trigger.lambda_arn
+  event_rule_name         = local.batch_trigger_event_rule_name
+  event_rule_desc         = local.batch_trigger_event_rule_desc
+  event_schedule          = local.batch_trigger_event_schedule
+}
+
+
