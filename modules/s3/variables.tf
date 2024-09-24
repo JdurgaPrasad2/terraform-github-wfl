@@ -27,7 +27,7 @@ variable "sqs_queue_arn" {
     default = null
 }
 
-variable "s3_events" {
+variable "bucket_events" {
   description = "list of s3 events"
   type = list(string)
   default = []
