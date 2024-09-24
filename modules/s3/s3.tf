@@ -19,7 +19,7 @@ resource "aws_s3_bucket_public_access_block" "block" {
 }
 
 resource "aws_s3_bucket_notification" "bucket_sqs_notification" {
-  count = var.s3_bucket_sqs_notification ? 1 : 0
+  count = var.bucket_sqs_notification ? 1 : 0
   bucket = aws_s3_bucket.resource.id
   queue {
     queue_arn     = var.sqs_queue_arn
