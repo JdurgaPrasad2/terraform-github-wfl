@@ -39,12 +39,11 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan  
-        env:
+        #env:
           #TF_VAR_department: ${{ vars.department }}
           #TF_VAR_env: ${{ vars.env }}
           #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
           #TF_VAR_region: ${{ vars.AWS_REGION }} 
-          TF_VAR_data_ingestion_bucket_name: ${{ vars.data_ingestion_bucket_name }} 
   terraform-apply:
     environment: dev
     needs: terraform-plan
@@ -69,12 +68,11 @@ jobs:
           terraform_version: 1.1.7 
 
       - name: Terraform Apply
-        env:
+        #env:
           #TF_VAR_department:    ${{ vars.department }}
           #TF_VAR_env:           ${{ vars.env }}
           #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
           #TF_VAR_region:       ${{ vars.AWS_REGION }}
-          TF_VAR_data_ingestion_bucket_name: ${{ vars.data_ingestion_bucket_name }} 
         run: |
             terraform init
             terraform plan
