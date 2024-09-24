@@ -22,7 +22,7 @@ locals {
   data_ingestion_bucket_events        = []
   data_ingestion_bucket_filter_suffix = "null"
   data_ingestion_bucket_filter_prefix = "null"
-  data_ingestion_bucket_sqs_notification = var.bucket_sqs_notification
+  data_ingestion_bucket_sqs_notification = var.data_ingestion_bucket_sqs_notification
 }
 
 module "batch" {
