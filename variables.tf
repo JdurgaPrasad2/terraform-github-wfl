@@ -35,7 +35,7 @@ variable "bucket_prefix" {
 variable "project" {
   description = "Department requesting the resource"
   type        = string
-  default     = "doc"
+  default     = "binder"
 }
 
 variable "subnet_ids" {
