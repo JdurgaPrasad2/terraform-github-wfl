@@ -2,7 +2,7 @@
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
-  default     = "test"
+  default     = "dev"
 }
 
 variable "region" {
