@@ -160,25 +160,25 @@ variable "sqs_queue_arn" {
   default = null
 }
 
-variable "s3_events" {
-  description = "list of s3 events"
+variable "data_ingestion_bucket_events" {
+  description = "list of s3 events for data ingestion bucket"
   type = list(string)
   default = []
 }
 
-variable "filter_suffix" {
+variable "data_ingestion_bucket_filter_suffix" {
   description = "s3 bucketnotification filter suffix"
   type = string
   default = null  
 }
 
-variable "filter_prefix" {
+variable "data_ingestion_bucket_filter_prefix" {
   description = "s3 bucketnotification filter prefix"
   type = string
   default = null  
 }
 
-variable "s3_bucket_sqs_notification" {
+variable "data_ingestion_bucket_sqs_notification" {
   description = "s3 bucket to sqs notification - true/false"
   type = bool
   default = false  
