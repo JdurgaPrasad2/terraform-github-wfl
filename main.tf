@@ -18,6 +18,11 @@ locals {
   batch_trigger_event_rule_name       = "${var.project}-${var.batch_trigger_event_rule_name}-${var.env}"
   batch_trigger_event_rule_desc       = "batch trigger event rule name"
   batch_trigger_event_schedule        = "${var.batch_trigger_event_schedule}"
+  data_ingestion_bucket_name          = "${var.project}-${var.data_ingestion_bucket_name}-${var.env}"  
+  data_ingestion_bucket_events        = []
+  data_ingestion_bucket_filter_suffix = "null"
+  data_ingestion_bucket_filter_prefix = "null"
+  data_ingestion_bucket_sqs_notification = var.bucket_sqs_notification
 }
 
 module "batch" {
@@ -64,16 +69,17 @@ module "eventbridge_rule_batch_trigger" {
   event_schedule          = local.batch_trigger_event_schedule
 }
 
-module "data-ingestion-bucket" {
-  source                  = "./modules/s3"
-  project                 = var.project
-  region                  = var.region  
-  env                     = var.env
-  function_name           = local.batch_trigger_function_name
-  function_arn           =  module.lambda_batch_trigger.lambda_arn
-  event_rule_name         = local.batch_trigger_event_rule_name
-  event_rule_desc         = local.batch_trigger_event_rule_desc
-  event_schedule          = local.batch_trigger_event_schedule
+module "data_ingestion_bucket" {
+  source                      = "./modules/s3"
+  project                     = var.project
+  region                      = var.region  
+  env                         = var.env
+  bucket_name                 = local.data_ingestion_bucket_name
+  sqs_queue_arn               = var.sqs_queue_arn
+  bucket_events               = var.data_ingestion_bucket_events
+  filter_suffix               = var.data_ingestion_bucket_filter_suffix
+  filter_prefix               = var.data_ingestion_bucket_filter_prefix
+  bucket_sqs_notification     = var.data_ingestion_bucket_sqs_notification
 }
 
 
