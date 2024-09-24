@@ -45,7 +45,7 @@ variable "filter_prefix" {
   default = null  
 }
 
-variable "s3_bucket_sqs_notification" {
+variable "bucket_sqs_notification" {
   description = "s3 bucket to sqs notification - true/false"
   type = bool
   default = false  
