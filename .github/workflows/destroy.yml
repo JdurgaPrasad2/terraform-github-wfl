@@ -6,7 +6,7 @@ permissions:
       contents: read  
 jobs:
   terraform-plan-destroy:
-    environment: ${{ vars.env }}
+    environment: dev
     runs-on: ubuntu-latest
     defaults:
       run:
