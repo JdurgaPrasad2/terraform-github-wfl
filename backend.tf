@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "s3-backend-for-testap-dev"
+    bucket = "s3-backend-for-testap"
     key =    "dev/test.tfstate"
     #region = us-east-1
     encrypt = true   
