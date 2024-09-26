@@ -9,7 +9,6 @@ permissions:
     contents: read  
 jobs:
   terraform-plan:
-    #environment: ${{ vars.env }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,7 +22,6 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
-          #aws-region: "us-east-1" 
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -41,9 +39,7 @@ jobs:
         id: plan
         run: terraform plan  
         #env:
-          #TF_VAR_department: ${{ vars.department }}
           #TF_VAR_env: ${{ vars.env }}
-          #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
           #TF_VAR_region: ${{ vars.AWS_REGION }} 
   terraform-apply:
     environment: dev
@@ -70,9 +66,7 @@ jobs:
 
       - name: Terraform Apply
         #env:
-          #TF_VAR_department:    ${{ vars.department }}
           #TF_VAR_env:           ${{ vars.env }}
-          #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
           #TF_VAR_region:         ${{ vars.AWS_REGION }}
         run: | 
             terraform init
