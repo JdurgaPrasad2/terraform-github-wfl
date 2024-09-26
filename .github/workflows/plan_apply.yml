@@ -9,6 +9,7 @@ permissions:
     contents: read  
 jobs:
   terraform-plan:
+    environment: ${{ vars.env }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,13 +40,13 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan  
-        #env:
+        env:
           #TF_VAR_department: ${{ vars.department }}
-          #TF_VAR_env: ${{ vars.env }}
+          TF_VAR_env: ${{ vars.env }}
           #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
-          #TF_VAR_region: ${{ vars.AWS_REGION }} 
+          TF_VAR_region: ${{ vars.AWS_REGION }} 
   terraform-apply:
-    environment: dev
+    environment: ${{ vars.env }}
     needs: terraform-plan
     runs-on: ubuntu-latest
     defaults:
@@ -68,12 +69,12 @@ jobs:
           terraform_version: 1.1.7 
 
       - name: Terraform Apply
-        #env:
+        env:
           #TF_VAR_department:    ${{ vars.department }}
-          #TF_VAR_env:           ${{ vars.env }}
+          TF_VAR_env:           ${{ vars.env }}
           #TF_VAR_bucket_prefix: ${{ vars.bucket_prefix }}
-          #TF_VAR_region:       ${{ vars.AWS_REGION }}
-        run: |
+          TF_VAR_region:         ${{ vars.AWS_REGION }}
+        run: | 
             terraform init
             terraform plan
             terraform apply -auto-approve
