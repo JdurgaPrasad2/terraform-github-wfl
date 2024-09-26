@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    bucket = "s3-backend-for-testap-test"
-    key =    "test/test.tfstate"
+    bucket = "s3-backend-for-testap-dev"
+    key =    "dev/test.tfstate"
     #region = us-east-1
     encrypt = true   
     #dynamodb_table = "test-dynamodb-table"
-    dynamodb_table = "test-dynamodb-table-test"
+    dynamodb_table = "test-dynamodb-table-dev"
     }
 }
