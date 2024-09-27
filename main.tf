@@ -27,7 +27,7 @@ locals {
 
 module "batch-dev" {
   source                = "./modules/batch"
-  providers             = { aws = aws.NVirginia }  
+  providers             = { aws = aws.dev }  
   project               = var.project
   region                = var.region
   env                   = var.env
@@ -45,6 +45,7 @@ module "batch-dev" {
 
 module "batch-test" {
   source                = "./modules/batch"
+  providers             = { aws = aws.test } 
   project               = var.project
   region                = var.region
   env                   = var.env
