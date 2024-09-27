@@ -183,3 +183,21 @@ variable "data_ingestion_bucket_sqs_notification" {
   type = bool
   default = false  
 }
+########################
+variable "aws_regions" {
+  type        = map(object({
+    account = string
+  }))
+
+  description = "AWS regions"
+  default     = {
+    "NVirginia" = {
+      "region" = "us-east-1"
+    }
+
+    "Ohio" = {
+      "region" = "us-east-2"
+    }
+  }
+}
+########################
