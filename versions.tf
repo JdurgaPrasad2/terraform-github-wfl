@@ -16,12 +16,12 @@ terraform {
 
 provider "aws" {
   alias  = "NVirginia"
-  region = var.aws_region
+  region = var.region
 }
 
 provider "aws" {
   alias  = "Ohio"
-  region = var.aws_region
+  region = var.region
 }
 
 /*
