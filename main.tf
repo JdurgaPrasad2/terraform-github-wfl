@@ -51,7 +51,7 @@ module "batch" {
   assign_public_ip      = var.assign_public_ip
   job_def_type          = var.job_def_type
 }
-
+/*
 module "batch" {
   #count = var.env == "test" ? 1 : 0
   source                = "./modules/batch"
@@ -70,7 +70,7 @@ module "batch" {
   assign_public_ip      = var.assign_public_ip
   job_def_type          = var.job_def_type
 }
-
+*/
 
 module "lambda_batch_trigger" {
   source                  = "./modules/lambda"
