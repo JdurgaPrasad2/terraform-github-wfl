@@ -47,7 +47,8 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash  
+        #shell: bash  
+        working-directory: ./dev-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
