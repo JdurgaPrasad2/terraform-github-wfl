@@ -13,9 +13,7 @@ module "test-s3" {
 locals{
   test = "${var.env == "test" ? "us-east-1" : ""}"
   dev = "${var.env == "dev" ? "us-east-2" : ""}"
-  nonprod = "${var.env != "test" && var.env != "dev" ? "us-east-1" : ""}"
-  default = "${var.env == "" ? "us-east-1" : ""}"
-  region = "${coalesce(local.test,local.dev, local.nonprod, local.default)}"
+  region = "${coalesce(local.test,local.dev)}"
 }
 
 
