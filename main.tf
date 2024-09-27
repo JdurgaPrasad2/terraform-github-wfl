@@ -9,6 +9,15 @@ module "test-s3" {
 }
 */
 
+
+locals{
+  prod = "${var.environment == "PROD" ? "east" : ""}"
+  prod2 = "${var.environment == "PROD2" ? "west2" : ""}"
+  nonprod = "${var.environment != "PROD" && var.environment != "PROD2" ? "west" : ""}"
+  region = "${coalesce(local.prod,local.prod2, local.nonprod)}"
+}
+
+
 locals {
   compute_env_name                    = "${var.project}-${var.compute_env_name}-${var.env}"
   job_queue_name                      = "${var.project}-${var.job_queue_name}-${var.env}"
@@ -26,6 +35,7 @@ locals {
 }
 
 module "batch-dev" {
+  count  = (${var.env} == "dev") ? 1 : 0
   source                = "./modules/batch"
   providers             = { aws = aws.dev }  
   project               = var.project
@@ -44,6 +54,7 @@ module "batch-dev" {
 }
 
 module "batch-test" {
+  count  = (${var.env} == "test") ? 1 : 0
   source                = "./modules/batch"
   providers             = { aws = aws.test } 
   project               = var.project
