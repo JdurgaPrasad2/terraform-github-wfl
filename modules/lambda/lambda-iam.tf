@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "lambda_service_assume" {
 
 #lambda service role  
 resource "aws_iam_role" "lambda_execution" {
-  name               = "${var.project}-lambda-execution-role"
+  name               = "${var.project}-lambda-execution-role-${var.env}"
   assume_role_policy = data.aws_iam_policy_document.lambda_service_assume.json
 }
 
@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "lambda_execution" {
 }
 
 resource "aws_iam_role_policy" "lambda_execution" {
-  name   = "${var.project}-lambda-execution-policy"
+  name   = "${var.project}-lambda-execution-policy-${var.env}"
   policy = data.aws_iam_policy_document.lambda_execution.json
   role   = aws_iam_role.lambda_execution.id
 }
