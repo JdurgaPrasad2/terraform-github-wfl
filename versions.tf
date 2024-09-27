@@ -15,12 +15,12 @@ terraform {
 # Provider Block
 
 provider "aws" {
-  alias  = "NVirginia"
+  alias  = "dev"
   region = var.region
 }
 
 provider "aws" {
-  alias  = "Ohio"
+  alias  = "test"
   region = var.region
 }
 
