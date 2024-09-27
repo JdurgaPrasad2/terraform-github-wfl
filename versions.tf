@@ -13,7 +13,7 @@ terraform {
 } 
 
 # Provider Block
-
+/*
 provider "aws" {
   alias  = "dev"
   #region = var.env[dev].region
@@ -25,12 +25,12 @@ provider "aws" {
   #region = var.env[dev].region
   region = us-east-1
 }
+*/
 
-/*
 provider "aws" {
   region = var.region
   #assume_role {
   #  role_arn = var.cross_account_role_arn
   #}  
 }
-*/
+
