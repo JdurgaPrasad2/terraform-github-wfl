@@ -34,7 +34,7 @@ locals {
 }
 
 module "batch-dev" {
-  count = var.env == "dev" ? 0 : 1
+  count = var.env == "dev" ? 1 : 0
   source                = "./modules/batch"
   providers             = { aws = aws.dev }  
   project               = var.project
@@ -53,7 +53,7 @@ module "batch-dev" {
 }
 
 module "batch-test" {
-  count = var.env == "test" ? 0 : 1
+  count = var.env == "test" ? 1 : 0
   source                = "./modules/batch"
   providers             = { aws = aws.test } 
   project               = var.project
