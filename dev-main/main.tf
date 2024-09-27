@@ -1,8 +1,8 @@
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+provider "aws" {
+  region = "us-east-1"
+}
 
-  tags = {
-    Name = "HelloWorld"
-  }
+resource "aws_instance" "web" {
+  ami           = "ami-0e54eba7c51c234f6"
+  instance_type = "t2.micro"
 }
