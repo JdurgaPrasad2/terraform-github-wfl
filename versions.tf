@@ -16,12 +16,14 @@ terraform {
 
 provider "aws" {
   alias  = "dev"
-  region = var.env[dev].region
+  #region = var.env[dev].region
+  region =  us-east-2
 }
 
 provider "aws" {
   alias  = "test"
-  region = var.env[dev].region
+  #region = var.env[dev].region
+  region = us-east-1
 }
 
 /*
