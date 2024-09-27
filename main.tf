@@ -9,13 +9,13 @@ module "test-s3" {
 }
 */
 
-
+/*
 locals{
   test = "${var.env == "test" ? "us-east-1" : ""}"
   dev = "${var.env == "dev" ? "us-east-2" : ""}"
   region = "${coalesce(local.test,local.dev)}"
 }
-
+*/
 
 locals {
   compute_env_name                    = "${var.project}-${var.compute_env_name}-${var.env}"
@@ -33,12 +33,12 @@ locals {
   data_ingestion_bucket_sqs_notification = var.data_ingestion_bucket_sqs_notification
 }
 
-module "batch-dev" {
-  count = var.env == "dev" ? 1 : 0
+module "batch" {
+  #count = var.env == "dev" ? 1 : 0
   source                = "./modules/batch"
-  providers             = { aws = aws.dev }  
+  #providers             = { aws = aws.dev }  
   project               = var.project
-  region                = local.region
+  region                = var.region
   env                   = var.env
   compute_env_name      = local.compute_env_name
   job_queue_name        = local.job_queue_name
@@ -52,12 +52,12 @@ module "batch-dev" {
   job_def_type          = var.job_def_type
 }
 
-module "batch-test" {
-  count = var.env == "test" ? 1 : 0
+module "batch" {
+  #count = var.env == "test" ? 1 : 0
   source                = "./modules/batch"
-  providers             = { aws = aws.test } 
+  #providers             = { aws = aws.test } 
   project               = var.project
-  region                = local.region
+  region                = var.region
   env                   = var.env
   compute_env_name      = local.compute_env_name
   job_queue_name        = local.job_queue_name
@@ -71,7 +71,7 @@ module "batch-test" {
   job_def_type          = var.job_def_type
 }
 
-/*
+
 module "lambda_batch_trigger" {
   source                  = "./modules/lambda"
   project                 = var.project
@@ -111,5 +111,3 @@ module "data_ingestion_bucket" {
   filter_prefix               = var.data_ingestion_bucket_filter_prefix
   bucket_sqs_notification     = var.data_ingestion_bucket_sqs_notification
 }
-
-*/
