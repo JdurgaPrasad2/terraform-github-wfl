@@ -11,10 +11,11 @@ module "test-s3" {
 
 
 locals{
-  prod = "${var.environment == "PROD" ? "east" : ""}"
-  prod2 = "${var.environment == "PROD2" ? "west2" : ""}"
-  nonprod = "${var.environment != "PROD" && var.environment != "PROD2" ? "west" : ""}"
-  region = "${coalesce(local.prod,local.prod2, local.nonprod)}"
+  test = "${var.env == "test" ? "us-east-1" : ""}"
+  dev = "${var.env == "dev" ? "us-east-2" : ""}"
+  nonprod = "${var.env != "test" && var.env != "dev" ? "us-east-1" : ""}"
+  default = "${var.env == "" ? "us-east-1" : ""}"
+  region = "${coalesce(local.test,local.dev, local.nonprod, local.default)}"
 }
 
 
@@ -39,7 +40,7 @@ module "batch-dev" {
   source                = "./modules/batch"
   providers             = { aws = aws.dev }  
   project               = var.project
-  region                = var.region
+  region                = local.region
   env                   = var.env
   compute_env_name      = local.compute_env_name
   job_queue_name        = local.job_queue_name
@@ -58,7 +59,7 @@ module "batch-test" {
   source                = "./modules/batch"
   providers             = { aws = aws.test } 
   project               = var.project
-  region                = var.region
+  region                = local.region
   env                   = var.env
   compute_env_name      = local.compute_env_name
   job_queue_name        = local.job_queue_name
