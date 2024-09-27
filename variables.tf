@@ -1,9 +1,10 @@
 # variables.tf
+/*
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
   default     = "dev"
-}
+} */
 
 variable "region" {
   description = "Target region for the deployment"
@@ -183,3 +184,20 @@ variable "data_ingestion_bucket_sqs_notification" {
   type = bool
   default = false  
 }
+
+variable "env" {
+    type        = map(object({
+    region = string
+  }))
+
+  description = "DevOps AWS Account Numbers"
+  default     = {
+    "dev" = {
+      "region" = "us-east-1"
+    }
+    "test" = {
+      "region" = "us-east-2"
+    }
+  }
+}
+
