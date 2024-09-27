@@ -16,12 +16,12 @@ terraform {
 
 provider "aws" {
   alias  = "dev"
-  region = var.region
+  region = var.env[dev].region
 }
 
 provider "aws" {
   alias  = "test"
-  region = var.region
+  region = var.env[dev].region
 }
 
 /*
