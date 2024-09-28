@@ -66,7 +66,7 @@ variable "job_queue_state" {
 variable "ecr_app_code_image" {
   description = "ecr - app code image"
   type = string
-  default = "311324824904.dkr.ecr.us-east-2.amazonaws.com/docker-image-repo:latest"
+  default = ""
 }
 
 variable "assign_public_ip" {
