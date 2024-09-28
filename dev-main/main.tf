@@ -7,7 +7,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "s3-backend-for-testap"
-    key =    "test/terraform.tfstate"
+    key =    "dev/terraform.tfstate"
     encrypt = true   
     dynamodb_table = "test-dynamodb-table"
     }
