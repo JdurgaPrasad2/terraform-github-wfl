@@ -6,12 +6,12 @@ permissions:
       contents: read  
 jobs:
   terraform-plan-destroy:
-    environment: dev
+    environment: ${{ vars.env }}
     runs-on: ubuntu-latest
     defaults:
       run:
-        #shell: bash
-        working-directory: ./dev-main
+        shell: bash
+        #working-directory: ./dev-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
