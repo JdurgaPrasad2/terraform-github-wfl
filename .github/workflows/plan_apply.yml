@@ -9,11 +9,12 @@ permissions:
     contents: read  
 jobs:
   terraform-plan:
+    environment: ${{ vars.env }}
     runs-on: ubuntu-latest
     defaults:
       run:
-        #shell: bash
-        working-directory: ./dev-main
+        shell: bash
+        #working-directory: ./dev-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,17 +40,17 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan  
-        #env:
-          #TF_VAR_env: ${{ vars.env }}
-          #TF_VAR_region: ${{ vars.AWS_REGION }} 
+        env:
+          TF_VAR_env: ${{ vars.env }}
+          TF_VAR_region: ${{ vars.AWS_REGION }} 
   terraform-apply:
-    environment: dev
+    environment: ${{ vars.env }}
     needs: terraform-plan
     runs-on: ubuntu-latest
     defaults:
       run:
-        #shell: bash  
-        working-directory: ./dev-main
+        shell: bash  
+        #working-directory: ./dev-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
