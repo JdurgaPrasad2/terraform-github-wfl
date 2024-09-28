@@ -6,7 +6,7 @@ terraform {
   backend "s3" {
     bucket = "s3-backend-for-testap-test"
     key =    "test/terraform.tfstate"
-    region = "us-east-2""
+    region = "us-east-2"
     encrypt = true   
     dynamodb_table = "dynamodb-table-test"
     }
