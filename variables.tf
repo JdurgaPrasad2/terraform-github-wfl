@@ -3,13 +3,13 @@
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
-  default     = "dev"
+  default     = "test"
 } 
 
 variable "region" {
   description = "Target region for the deployment"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 /*
 variable "department" {
@@ -26,7 +26,7 @@ variable "versioning" {
 variable "bucket_prefix" {
   description = "s3 bucket prefix folder path"
   type = string
-  default = "testprefix/"
+  default = "test/"
 }
 */
 ##
@@ -42,8 +42,7 @@ variable "project" {
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
-  default     = ["subnet-00569b26a3213a7e1", "subnet-0e48b1f0e28e9c6c6", "subnet-0e026045fca978c88",
-                 "subnet-0eec6807e479a7710", "subnet-0a7bc81164a4c83be", "subnet-08d6a2244363db01f"] 
+  default     = ["subnet-1f35a774", "subnet-68063524", "subnet-b49c57c9"]
 }
 
 variable "compute_resource_type" {
@@ -67,7 +66,7 @@ variable "job_queue_state" {
 variable "ecr_app_code_image" {
   description = "ecr - app code image"
   type = string
-  default = "311324824904.dkr.ecr.us-east-1.amazonaws.com/batchtest-repo:latest"
+  default = "311324824904.dkr.ecr.us-east-2.amazonaws.com/docker-image-repo:latest"
 }
 
 variable "assign_public_ip" {
