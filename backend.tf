@@ -1,3 +1,4 @@
+/*
 terraform {
   backend "s3" {
     bucket = "s3-backend-for-testap-test"
@@ -6,3 +7,4 @@ terraform {
     dynamodb_table = "dynamodb-table-test"
     }
 }
+*/
