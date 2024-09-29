@@ -88,6 +88,7 @@ module "lambda_batch_trigger" {
 }
 
 module "eventbridge_rule_batch_trigger" {
+  depends_on = [module.lambda_batch_trigger]
   source                  = "../modules/eventbridge"
   project                 = var.project
   region                  = var.region  
