@@ -1,5 +1,5 @@
 # variables.tf
-
+/*
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
@@ -10,7 +10,7 @@ variable "region" {
   description = "Target region for the deployment"
   type        = string
   default     = "us-east-2"
-}
+} */
 /*
 variable "department" {
   description = "Department requesting the resource"
@@ -32,7 +32,7 @@ variable "bucket_prefix" {
 ##
 ##aws batch variables
 ##
-
+/*
 variable "project" {
   description = "Department requesting the resource"
   type        = string
@@ -182,7 +182,7 @@ variable "data_ingestion_bucket_sqs_notification" {
   description = "s3 bucket to sqs notification - true/false"
   type = bool
   default = false  
-}
+} */
 /*
 variable "env" {
     type        = map(object({
