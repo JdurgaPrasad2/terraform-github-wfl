@@ -151,7 +151,7 @@ variable "job_name" {
 variable "data_ingestion_bucket_name" {
   description = "s3 bucket name"
   type = string
-  default = "data-ingestion"  
+  default = "data-1x2-ingestion"  
 }
 
 variable "sqs_queue_arn" {
