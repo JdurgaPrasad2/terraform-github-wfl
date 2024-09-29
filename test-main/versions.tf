@@ -28,8 +28,18 @@ provider "aws" {
 */
 
 provider "aws" {
+  alias  = "test"
   region = var.region
   #assume_role {
   #  role_arn = var.cross_account_role_arn
   #}  
 }
+
+provider "aws" {
+  alias  = "dev"
+  region = var.region
+  #assume_role {
+  #  role_arn = var.cross_account_role_arn
+  #}  
+}
+
