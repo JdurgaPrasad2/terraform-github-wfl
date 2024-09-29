@@ -115,7 +115,7 @@ variable "runtime" {
 variable "batch_trigger_src_dir" {
   description = "batch jobtrigger source dir"
   type = string
-  default = "./batch-trigger-src"
+  default = "../batch-trigger-src"
 }
 
 variable "batch_trigger_src_op_path" {
