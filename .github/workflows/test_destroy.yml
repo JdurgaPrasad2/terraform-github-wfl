@@ -1,4 +1,4 @@
-name: "TF_Plan_Destroy"
+name: "TF_Plan_Destroy_TEST"
 on:
   workflow_dispatch:
 permissions:
@@ -11,7 +11,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        #working-directory: ./dev-main
+        working-directory: ./test-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
