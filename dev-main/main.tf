@@ -1,16 +1,5 @@
-
-
 provider "aws" {
   region = "us-east-1"
-}
-
-terraform {
-  backend "s3" {
-    bucket = "s3-backend-for-testap"
-    key =    "dev/terraform.tfstate"
-    encrypt = true   
-    dynamodb_table = "test-dynamodb-table"
-    }
 }
 
 resource "aws_instance" "web" {
