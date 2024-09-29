@@ -23,7 +23,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_DEV }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ vars.REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -41,8 +41,8 @@ jobs:
         id: plan
         run: terraform plan  
         env:
-          TF_VAR_env: ${{ vars.env }}
-          TF_VAR_region: ${{ vars.AWS_REGION }} 
+          TF_VAR_env: ${{ vars.ENV }}
+          TF_VAR_region: ${{ vars.REGION }} 
   terraform-apply:
     environment: ${{ vars.env }}
     needs: terraform-plan
@@ -59,7 +59,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_DEV }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ vars.REGION }}
           #aws-region: "us-east-1" 
 
       - name: Setup Terraform
@@ -69,8 +69,8 @@ jobs:
 
       - name: Terraform Apply
         env:
-          TF_VAR_env:                ${{ vars.env }}
-          TF_VAR_region:             ${{ vars.AWS_REGION }}
+          TF_VAR_env:                ${{ vars.ENV }}
+          TF_VAR_region:             ${{ vars.REGION }}
           TF_VAR_ecr_app_code_image: ${{ secrets.REPO_NAME }}
         run: | 
             terraform init
