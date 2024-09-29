@@ -9,7 +9,7 @@ permissions:
     contents: read  
 jobs:
   terraform-plan:
-    environment: ${{ vars.env }}
+    environment: ${{ vars.ENV }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,7 +44,7 @@ jobs:
           TF_VAR_env: ${{ vars.ENV }}
           TF_VAR_region: ${{ vars.REGION }} 
   terraform-apply:
-    environment: ${{ vars.env }}
+    environment: ${{ vars.ENV }}
     needs: terraform-plan
     runs-on: ubuntu-latest
     defaults:
