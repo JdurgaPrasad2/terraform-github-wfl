@@ -71,7 +71,7 @@ jobs:
         env:
           TF_VAR_env:                ${{ vars.ENV }}
           TF_VAR_region:             ${{ vars.REGION }}
-          TF_VAR_ecr_app_code_image: ${{ secrets.REPO_NAME }}
+          TF_VAR_ecr_app_code_image: ${{ vars.REPO_NAME }}
         run: | 
             terraform init
             terraform plan
