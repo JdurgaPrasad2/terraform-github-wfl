@@ -35,7 +35,7 @@ locals {
 
 module "batch" {
   #count = var.env == "dev" ? 1 : 0
-  source                = "./modules/batch"
+  source                = "../modules/batch"
   #providers             = { aws = aws.dev }  
   project               = var.project
   region                = var.region
@@ -54,7 +54,7 @@ module "batch" {
 /*
 module "batch" {
   #count = var.env == "test" ? 1 : 0
-  source                = "./modules/batch"
+  source                = "../modules/batch"
   #providers             = { aws = aws.test } 
   project               = var.project
   region                = var.region
@@ -73,7 +73,7 @@ module "batch" {
 */
 
 module "lambda_batch_trigger" {
-  source                  = "./modules/lambda"
+  source                  = "../modules/lambda"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
@@ -88,7 +88,7 @@ module "lambda_batch_trigger" {
 }
 
 module "eventbridge_rule_batch_trigger" {
-  source                  = "./modules/eventbridge"
+  source                  = "../modules/eventbridge"
   project                 = var.project
   region                  = var.region  
   env                     = var.env
@@ -100,7 +100,7 @@ module "eventbridge_rule_batch_trigger" {
 }
 
 module "data_ingestion_bucket" {
-  source                      = "./modules/s3"
+  source                      = "../modules/s3"
   project                     = var.project
   region                      = var.region  
   env                         = var.env
