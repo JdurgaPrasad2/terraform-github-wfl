@@ -6,7 +6,7 @@ permissions:
       contents: read  
 jobs:
   terraform-plan-destroy:
-    environment: ${{ vars.env }}
+    environment: ${{ vars.ENV }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,7 +20,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_DEV }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ vars.REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
