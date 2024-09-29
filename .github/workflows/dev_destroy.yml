@@ -1,4 +1,4 @@
-name: "TF_Plan_Destroy"
+name: "TF_Plan_Destroy_DEV"
 on:
   workflow_dispatch:
 permissions:
