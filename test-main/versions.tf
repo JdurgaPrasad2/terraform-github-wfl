@@ -26,7 +26,7 @@ provider "aws" {
   region = us-east-1
 }
 */
-
+/*
 provider "aws" {
   alias  = "test"
   region = var.region
@@ -41,5 +41,10 @@ provider "aws" {
   #assume_role {
   #  role_arn = var.cross_account_role_arn
   #}  
+}
+*/
+
+provider "aws" {
+  region = var.region
 }
 
