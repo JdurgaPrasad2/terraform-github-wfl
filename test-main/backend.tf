@@ -4,6 +4,6 @@ terraform {
     key =    "test/test.tfstate"
     region = "us-east-1"
     encrypt = true   
-    dynamodb_table = "test-dynamodb-table"
+    dynamodb_table = "dynamodb-table"
     }
 }
