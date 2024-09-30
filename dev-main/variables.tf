@@ -44,7 +44,7 @@ variable "subnet_ids" {
   type        = list(string)
   #default     = ["subnet-00569b26a3213a7e1", "subnet-0e48b1f0e28e9c6c6", "subnet-0e026045fca978c88",
   #               "subnet-0eec6807e479a7710", "subnet-0a7bc81164a4c83be", "subnet-08d6a2244363db01f"] 
-  default      = []
+  default      = [""]
 }
 
 variable "compute_resource_type" {
