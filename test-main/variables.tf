@@ -42,7 +42,8 @@ variable "project" {
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
-  default     = ["subnet-1f35a774", "subnet-68063524", "subnet-b49c57c9"]
+  #default     = ["subnet-1f35a774", "subnet-68063524", "subnet-b49c57c9"]
+  default     = [""]
 }
 
 variable "compute_resource_type" {
