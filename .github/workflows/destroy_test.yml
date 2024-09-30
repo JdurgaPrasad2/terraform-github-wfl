@@ -6,7 +6,8 @@ permissions:
       contents: read  
 jobs:
   terraform-plan-destroy:
-    environment: test
+    #environment: test
+    environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     defaults:
       run:
