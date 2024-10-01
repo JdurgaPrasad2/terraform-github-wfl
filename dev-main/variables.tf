@@ -185,6 +185,14 @@ variable "data_ingestion_bucket_sqs_notification" {
   type = bool
   default = false  
 }
+
+variable "ingestion_sqs_queue_name" {
+  description = "ingestion sqs queue name"
+  type = string
+  default = "ingestion-sqs-queue"
+}
+
+ingestion_sqs_queue_name
 /*
 variable "env" {
     type        = map(object({
