@@ -192,7 +192,6 @@ variable "ingestion_sqs_queue_name" {
   default = "ingestion-sqs-queue"
 }
 
-ingestion_sqs_queue_name
 /*
 variable "env" {
     type        = map(object({
