@@ -98,3 +98,9 @@ variable "visibility_timeout_seconds" {
   default = 30 
 }
 
+variable "queue_access_policy" {
+  type        = string
+  description = "sqs queue access policy"
+  default     = ""
+}
+
