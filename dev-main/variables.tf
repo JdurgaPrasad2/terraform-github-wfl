@@ -3,13 +3,13 @@
 variable "env" {
   description = "Target environment for the deployment"
   type        = string
-  default     = "dev"
+  default     = "test"
 } 
 
 variable "region" {
   description = "Target region for the deployment"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 /*
 variable "department" {
@@ -42,8 +42,8 @@ variable "project" {
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
-  default     = ["subnet-00569b26a3213a7e1", "subnet-0e48b1f0e28e9c6c6", "subnet-0e026045fca978c88",
-                 "subnet-0eec6807e479a7710", "subnet-0a7bc81164a4c83be", "subnet-08d6a2244363db01f"] 
+  #default     = ["subnet-1f35a774", "subnet-68063524", "subnet-b49c57c9"]
+  default     = [""]
 }
 
 variable "compute_resource_type" {
@@ -152,7 +152,7 @@ variable "job_name" {
 variable "data_ingestion_bucket_name" {
   description = "s3 bucket name"
   type = string
-  default = "data-ingestion"  
+  default = "data-1x2-ingestion"  
 }
 
 variable "sqs_queue_arn" {
