@@ -15,11 +15,11 @@ variable "project" {
   type        = string
   default     = "binder"
 }
-
+/*
 variable "bucket_arn" {
     description = "s3 bucket arn"
     type = string
-}
+} */
 
 variable "sqs_queue_name" {
     description = "sqs queue name"
