@@ -1,4 +1,4 @@
-name: "Terraform Plan & Apply #### TEST"
+name: "Terraform Plan & Apply"
 on:
   workflow_dispatch: 
   #push:
