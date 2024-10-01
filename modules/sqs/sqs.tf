@@ -1,3 +1,4 @@
+/*
 data "aws_iam_policy_document" "queue" {
   statement {
     effect = "Allow"
@@ -16,7 +17,7 @@ data "aws_iam_policy_document" "queue" {
       values   = ["${var.bucket_arn}"]
     }
   }
-}
+} */
 
 resource "aws_sqs_queue" "queue" {
   name                               = var.sqs_queue_name
@@ -41,10 +42,10 @@ resource "aws_sqs_queue" "queue" {
       "Project   "                     = var.project
   }
 }
-
+/*
 resource "aws_sqs_queue_policy" "queue_policy" {
   queue_url             = aws_sqs_queue.queue.url
   policy                = data.aws_iam_policy_document.queue.json
-}
+} *
 
 
