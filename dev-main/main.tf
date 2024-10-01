@@ -116,7 +116,7 @@ module "data_ingestion_bucket" {
   filter_prefix               = var.data_ingestion_bucket_filter_prefix
   bucket_sqs_notification     = var.data_ingestion_bucket_sqs_notification
 }
-##sqs queue call
+##sqs queue
 module "ingestion_sqs_queue" {
   source                      = "../modules/sqs"
   project                     = var.project
