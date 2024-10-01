@@ -13,7 +13,7 @@ variable "region" {
 variable "project" {
   description = "Department requesting the resource"
   type        = string
-  default     = "doc"
+  default     = "binder"
 }
 
 variable "bucket_arn" {
@@ -21,32 +21,80 @@ variable "bucket_arn" {
     type = string
 }
 
-variable "sqs_queue_arn" {
-    description = "sqs queue arn"
+variable "sqs_queue_name" {
+    description = "sqs queue name"
     type = string
-    default = null
 }
 
-variable "bucket_events" {
-  description = "list of s3 events"
-  type = list(string)
-  default = []
-}
-
-variable "filter_suffix" {
-  description = "s3 bucketnotification filter suffix"
+variable "fifo_queue_type_enabled" {
+  description = "sqs queue type fifo enabled?"
   type = string
-  default = null  
+  default = "false" 
 }
 
-variable "filter_prefix" {
-  description = "s3 bucketnotification filter prefix"
+variable "fifo_queue_throughput_limit" {
+  description = "sqs fifo throughput limit"
   type = string
-  default = null  
+  default = null 
 }
 
-variable "bucket_sqs_notification" {
-  description = "s3 bucket to sqs notification - true/false"
-  type = bool
-  default = false  
+variable "queue_delay_seconds" {
+  description = "sqs queue deplay in seconds"
+  type = number
+  default = 0 
 }
+
+variable "content_based_deduplication_enabled" {
+  description = "sqs queue with content based deduplication enabled?"
+  type = string
+  default = "false" 
+}
+
+variable "deduplication_scope" {
+  description = "sqs deduplication scope"
+  type = string
+  default = null 
+}
+
+variable "kms_data_key_reuse_period_seconds" {
+  description = "kms data_key reuse period seconds"
+  type = number
+  default = 300 
+}
+
+variable "kms_master_key_id" {
+  description = "kms master key_id"
+  type = string
+  default = null 
+}
+
+variable "max_message_size" {
+  description = "sqs queue max message size"
+  type = number
+  default = 262144 
+}
+
+variable "message_retention_seconds" {
+  description = "sqs queue message retention seconds"
+  type = number
+  default = 345600 
+}
+
+variable "receive_wait_time_seconds" {
+  description = "queue message receive wait_time seconds"
+  type = number
+  default = 0 
+}
+
+variable "sqs_managed_sse_enabled" {
+  description = "sqs managed sse enabled?"
+  type = string
+  default = "true" 
+}
+
+variable "visibility_timeout_seconds" {
+  description = "queue message visibility timeout seconds"
+  type = number
+  default = 30 
+}
+
