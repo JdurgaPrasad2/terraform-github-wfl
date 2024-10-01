@@ -54,7 +54,7 @@ resource "aws_iam_role_policy" "lambda_execution" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution" {
-  count = strcontains(var.function_name, "ingestion") ? 0 : 1
+  #count = strcontains(var.function_name, "ingestion") ? 0 : 1
   for_each = toset( [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ] )  
   role       =  aws_iam_role.lambda_execution.name
   policy_arn = each.key
