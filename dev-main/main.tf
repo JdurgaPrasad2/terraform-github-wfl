@@ -154,19 +154,19 @@ module "lambda_ingestion_trigger" {
   runtime                 = var.runtime
 }
 
-# eventbridge rule to invoke lambda which triggers batch
+# eventbridge rule to invoke lambda which triggers ingestion
 
-module "eventbridge_rule_batch_trigger" {
-  depends_on = [module.lambda_batch_trigger]
+module "eventbridge_rule_ingestion_trigger" {
+  depends_on = [module.lambda_ingestion_trigger]
   source                  = "../modules/eventbridge"
   project                 = var.project
   region                  = local.region  
   env                     = var.env
-  function_name           = local.batch_trigger_function_name
-  function_arn           =  module.lambda_batch_trigger.lambda_arn
-  event_rule_name         = local.batch_trigger_event_rule_name
-  event_rule_desc         = local.batch_trigger_event_rule_desc
-  event_schedule          = local.batch_trigger_event_schedule
+  function_name           = local.ingestion_trigger_function_name
+  function_arn           =  module.lambda_ingestion_trigger.lambda_arn
+  event_rule_name         = local.ingestion_trigger_event_rule_name
+  event_rule_desc         = local.ingestion_trigger_event_rule_desc
+  event_schedule          = local.ingestion_trigger_event_schedule
 }
 
 
