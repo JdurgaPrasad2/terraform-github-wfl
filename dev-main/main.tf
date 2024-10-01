@@ -28,7 +28,7 @@ locals {
   ingestion_sqs_queue_name            = "${var.project}-${var.ingestion_sqs_queue_name}-${var.env}"  
   batch_trigger_event_rule_desc       = "batch trigger event rule name"
   batch_trigger_event_schedule        = "${var.batch_trigger_event_schedule}"
-  data_ingestion_bucket_events        = []
+  data_ingestion_bucket_events        = "${var.data_ingestion_bucket_events}"
   data_ingestion_bucket_filter_suffix = "null"
   data_ingestion_bucket_filter_prefix = "null"
   data_ingestion_bucket_sqs_notification = var.data_ingestion_bucket_sqs_notification
