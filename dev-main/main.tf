@@ -150,11 +150,8 @@ module "lambda_ingestion_trigger" {
   function_name           = local.ingestion_trigger_function_name 
   source_dir              = var.ingestion_trigger_src_dir
   output_path             = var.ingestion_trigger_src_op_path
-  job_queue_name          = local.job_queue_name
-  job_def_name            = local.job_def_name
   handler                 = "${var.ingestion_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
-  job_name                = local.job_name
 }
 
 # eventbridge rule to invoke lambda which triggers batch
