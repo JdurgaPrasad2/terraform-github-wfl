@@ -39,13 +39,6 @@ resource "aws_sqs_queue" "queue" {
   tags = {
       "Name"                           = var.sqs_queue_name
       "Environment"                    = var.env
-      "Project   "                     = var.project
+      "Project"                        = var.project
   }
 }
-/*
-resource "aws_sqs_queue_policy" "queue_policy" {
-  queue_url             = aws_sqs_queue.queue.url
-  policy                = data.aws_iam_policy_document.queue.json
-} *
-
-
