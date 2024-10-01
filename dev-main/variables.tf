@@ -192,3 +192,15 @@ variable "ingestion_trigger_function_name" {
   type = string
   default = "ingestion-trigger"
 }
+
+variable "ingestion_trigger_event_rule_name" {
+  description = "ingestion trigger event rule name"
+  type = string
+  default = "ingestion-trigger-event-rule"
+}
+
+variable "ingestion_trigger_event_schedule" {
+  description = "ingestion trigger event schedule"
+  type = string
+  default = "rate(2 hours)"
+}
