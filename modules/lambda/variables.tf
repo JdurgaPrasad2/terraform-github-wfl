@@ -43,6 +43,24 @@ variable "job_name" {
   default = ""
 }
 
+variable "source_sqs_queue_url" {
+  description = "source sqs queue url for batch lambda"
+  type = string
+  default = ""
+}
+
+variable "target_bucket_arn" {
+  description = "target bucket arn for ingestion lambda"
+  type = string
+  default = ""
+}
+
+variable "target_bucket_name" {
+  description = "target bucketname for ingestion lambda"
+  type = string
+  default = ""
+}
+
 variable "source_dir" {
   description = "source dir"
   type = string
