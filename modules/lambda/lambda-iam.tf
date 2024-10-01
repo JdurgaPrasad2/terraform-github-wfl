@@ -12,6 +12,7 @@ data "aws_iam_policy_document" "lambda_service_assume" {
 
 #lambda service role  
 resource "aws_iam_role" "lambda_execution" {
+  count = strcontains(var.function_name, "ingestion") ? 0 : 1
   name               = "${var.project}-lambda-execution-role-${var.env}"
   assume_role_policy = data.aws_iam_policy_document.lambda_service_assume.json
 }
@@ -46,12 +47,14 @@ data "aws_iam_policy_document" "lambda_execution" {
 }
 
 resource "aws_iam_role_policy" "lambda_execution" {
+  count = strcontains(var.function_name, "ingestion") ? 0 : 1
   name   = "${var.project}-lambda-execution-policy-${var.env}"
   policy = data.aws_iam_policy_document.lambda_execution.json
   role   = aws_iam_role.lambda_execution.id
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution" {
+  count = strcontains(var.function_name, "ingestion") ? 0 : 1
   for_each = toset( [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ] )  
   role       =  aws_iam_role.lambda_execution.name
   policy_arn = each.key
