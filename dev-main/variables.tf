@@ -11,27 +11,10 @@ variable "region" {
   type        = string
   default     = "us-east-1"
 }
-/*
-variable "department" {
-  description = "Department requesting the resource"
-  type        = string
-  default = "test"
-}
 
-variable "versioning" {
-  type        = bool
-  default     = false
-}
 
-variable "bucket_prefix" {
-  description = "s3 bucket prefix folder path"
-  type = string
-  default = "test/"
-}
-*/
-##
 ##aws batch variables
-##
+
 
 variable "project" {
   description = "Department requesting the resource"
@@ -42,8 +25,6 @@ variable "project" {
 variable "subnet_ids" {
   description = "list of compute resource subnet ids"
   type        = list(string)
-  #default     = ["subnet-00569b26a3213a7e1", "subnet-0e48b1f0e28e9c6c6", "subnet-0e026045fca978c88",
-  #               "subnet-0eec6807e479a7710", "subnet-0a7bc81164a4c83be", "subnet-08d6a2244363db01f"] 
   default      = [""]
 }
 
@@ -149,7 +130,9 @@ variable "job_name" {
   type = string
   default = "batch-job"
 }
+
 ## s3 variables
+
 variable "data_ingestion_bucket_name" {
   description = "s3 bucket name"
   type = string
@@ -192,21 +175,20 @@ variable "ingestion_sqs_queue_name" {
   default = "ingestion-sqs-queue"
 }
 
-/*
-variable "env" {
-    type        = map(object({
-    region = string
-  }))
-
-  description = "DevOps AWS Account Numbers"
-  default     = {
-    "dev" = {
-      "region" = "us-east-1"
-    }
-    "test" = {
-      "region" = "us-east-2"
-    }
-  }
+variable "ingestion_trigger_src_dir" {
+  description = "ingestion lambda source dir"
+  type = string
+  default = "../ingestion-trigger-src"
 }
 
-*/
+variable "ingestion_trigger_src_op_path" {
+  description = "ingestion trigger source .zip file path"
+  type = string
+  default = "ingestion-trigger-src"
+}
+
+variable "ingestion_trigger_function_name" {
+  description = "ingestion trigger function name"
+  type = string
+  default = "ingestion-trigger"
+}
