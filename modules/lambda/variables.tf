@@ -28,16 +28,19 @@ variable "runtime" {
 variable "job_queue_name" {
   description = "job queue name"
   type = string
+  default = ""
 }
 
 variable "job_def_name" {
   description = "job definition name"
   type = string
+  default = ""
 }
 
 variable "job_name" {
   description = "batch job name"
   type = string
+  default = ""
 }
 
 variable "source_dir" {
