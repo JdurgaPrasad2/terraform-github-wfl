@@ -12,7 +12,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./test-main
+        working-directory: ./dev-main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
