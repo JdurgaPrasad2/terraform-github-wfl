@@ -165,7 +165,7 @@ variable "sqs_queue_arn" {
 variable "data_ingestion_bucket_events" {
   description = "list of s3 events for data ingestion bucket"
   type = list(string)
-  default = []
+  default = ["s3:ObjectCreated:*"]
 }
 
 variable "data_ingestion_bucket_filter_suffix" {
