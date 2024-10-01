@@ -103,6 +103,15 @@ module "eventbridge_rule_batch_trigger" {
   event_schedule          = local.batch_trigger_event_schedule
 }
 
+module "ingestion_sqs_queue" {
+  source                      = "../modules/sqs"
+  project                     = var.project
+  region                      = var.region  
+  env                         = var.env
+  sqs_queue_name              = local.ingestion_sqs_queue_name
+  #bucket_arn                  = module.data_ingestion_bucket.s3_bucket_arn
+}
+
 module "data_ingestion_bucket" {
   source                      = "../modules/s3"
   #providers             = { aws = aws.dev }  
@@ -110,32 +119,17 @@ module "data_ingestion_bucket" {
   region                      = var.region  
   env                         = var.env
   bucket_name                 = local.data_ingestion_bucket_name
-  sqs_queue_arn               = var.sqs_queue_arn
+  sqs_queue_arn               = module.ingestion_sqs_queue.sqs_queue_arn
   bucket_events               = var.data_ingestion_bucket_events
   filter_suffix               = var.data_ingestion_bucket_filter_suffix
   filter_prefix               = var.data_ingestion_bucket_filter_prefix
   bucket_sqs_notification     = var.data_ingestion_bucket_sqs_notification
 }
+
 ##sqs queue
-module "ingestion_sqs_queue" {
-  source                      = "../modules/sqs"
-  project                     = var.project
-  region                      = var.region  
-  env                         = var.env
-  sqs_queue_name              = local.ingestion_sqs_queue_name
-  bucket_arn                  = module.data_ingestion_bucket.s3_bucket_arn
-}
 
-
-
-/*
-resource "aws_sqs_queue_policy" "sqs_queue_policy_deploy" {
-  queue_url             = module.ingestion_sqs_queue.sqs_queue_url
-  policy                = local.deploy_sqs_policies[each.key].queue_access_policy
-}
-
-
-      queue_access_policy   = jsonencode(
+locals {
+  queue_access_policy = jsonencode(
       {
         "Version": "2012-10-17",
         "Id": "sqspolicy",
@@ -144,12 +138,17 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy_deploy" {
           "Effect": "Allow",
           "Principal": "*",
           "Action": "sqs:SendMessage",
-          "Resource": "arn:aws:sqs:${var.aws_region}:${var.aws_accounts["devops_deploy"].account}:sagerx-${var.app_department}-${var.app_env}-pipeline-${local.deploy_sqs_params["deploy_eventbus_dlq"].queue_name}",
+          "Resource": "${module.ingestion_sqs_queue.sqs_queue_arn}"
           "Condition": {
             "ArnEquals": {
-              "aws:SourceArn": "arn:aws:events:us-east-1:862449238228:event-bus/sagerx-dec-dev-submission-requests-eventbus"
+              "aws:SourceArn": "${module.data_ingestion_bucket.s3_bucket_arn}"
             }
           }
         }]
       })
-*/
+}
+
+resource "aws_sqs_queue_policy" "queue_policy" {
+  queue_url             = module.ingestion_sqs_queue.sqs_queue_url
+  policy                = local.queue_access_policy
+}
