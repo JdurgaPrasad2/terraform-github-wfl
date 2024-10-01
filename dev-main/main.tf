@@ -1,13 +1,4 @@
 # main.tf to call s3 bucket module
-/*
-module "test-s3" {
-  source = "./modules/test-s3"
-  department            = var.department
-  env                   = var.env
-  bucket_prefix         = var.bucket_prefix
-  region                = var.region
-}
-*/
 
 /*
 locals{
@@ -35,9 +26,7 @@ locals {
 }
 
 module "batch" {
-  #count = var.env == "dev" ? 1 : 0
   source                = "../modules/batch"
-  #providers             = { aws = aws.dev }   
   project               = var.project
   region                = var.region
   env                   = var.env
@@ -52,30 +41,9 @@ module "batch" {
   assign_public_ip      = var.assign_public_ip
   job_def_type          = var.job_def_type
 }
-/*
-module "batch" {
-  #count = var.env == "test" ? 1 : 0
-  source                = "../modules/batch"
-  #providers             = { aws = aws.dev }  
-  project               = var.project
-  region                = var.region
-  env                   = var.env
-  compute_env_name      = local.compute_env_name
-  job_queue_name        = local.job_queue_name
-  job_def_name          = local.job_def_name
-  subnet_ids            = var.subnet_ids
-  compute_resource_type = var.compute_resource_type
-  compute_env_type      = var.compute_env_type
-  job_queue_state       = var.job_queue_state
-  ecr_app_code_image    = var.ecr_app_code_image
-  assign_public_ip      = var.assign_public_ip
-  job_def_type          = var.job_def_type
-}
-*/
 
 module "lambda_batch_trigger" {
   source                  = "../modules/lambda"
-  #providers             = { aws = aws.dev }  
   project                 = var.project
   region                  = var.region  
   env                     = var.env
@@ -92,7 +60,6 @@ module "lambda_batch_trigger" {
 module "eventbridge_rule_batch_trigger" {
   depends_on = [module.lambda_batch_trigger]
   source                  = "../modules/eventbridge"
-  #providers             = { aws = aws.dev }  
   project                 = var.project
   region                  = var.region  
   env                     = var.env
@@ -114,7 +81,6 @@ module "ingestion_sqs_queue" {
 
 module "data_ingestion_bucket" {
   source                      = "../modules/s3"
-  #providers             = { aws = aws.dev }  
   project                     = var.project
   region                      = var.region  
   env                         = var.env
