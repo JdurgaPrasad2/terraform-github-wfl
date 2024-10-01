@@ -58,7 +58,7 @@ module "lambda_batch_trigger" {
   output_path             = var.batch_trigger_src_op_path
   job_queue_name          = local.job_queue_name
   job_def_name            = local.job_def_name
-  ingestion_sqs_queue_url = module.ingestion_sqs_queue.sqs_queue_url
+  source_sqs_queue_url    = module.ingestion_sqs_queue.sqs_queue_url
   handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
   job_name                = local.job_name
@@ -153,8 +153,8 @@ module "lambda_ingestion_trigger" {
   output_path             = var.ingestion_trigger_src_op_path
   handler                 = "${var.ingestion_trigger_src_op_path}.lambda_handler"
   runtime                 = var.runtime
-  ingestion_bucket_arn    = module.data_ingestion_bucket.s3_bucket_arn
-  ingestion_bucket_name   = local.data_ingestion_bucket_name
+  target_bucket_arn       = module.data_ingestion_bucket.s3_bucket_arn
+  target_bucket_name      = local.data_ingestion_bucket_name
 }
 
 # eventbridge rule to invoke lambda which triggers ingestion
