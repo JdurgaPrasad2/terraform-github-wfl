@@ -183,7 +183,7 @@ variable "data_ingestion_bucket_filter_prefix" {
 variable "data_ingestion_bucket_sqs_notification" {
   description = "s3 bucket to sqs notification - true/false"
   type = bool
-  default = false  
+  default = true  
 }
 
 variable "ingestion_sqs_queue_name" {
