@@ -8,17 +8,17 @@ data "aws_iam_policy_document" "queue" {
     }
 
     actions   = ["sqs:SendMessage"]
-    resources = ["arn:aws:sqs:*:*:s3-event-notification-queue"]
+    resources = ["${aws_sqs_queue.queue.arn}"]
 
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"
-      values   = [aws_s3_bucket.bucket.arn]
+      values   = ["${var.bucket_arn}"]
     }
   }
 }
 
 resource "aws_sqs_queue" "queue" {
-  name   = "s3-event-notification-queue"
+  name   = var.sqs_queue_name
   policy = data.aws_iam_policy_document.queue.json
 }
