@@ -33,7 +33,7 @@ resource "aws_sqs_queue" "queue" {
   receive_wait_time_seconds          = var.receive_wait_time_seconds
   sqs_managed_sse_enabled            = var.sqs_managed_sse_enabled
   visibility_timeout_seconds         = var.visibility_timeout_seconds
-  policy                             = data.aws_iam_policy_document.queue.json
+  #policy                             = data.aws_iam_policy_document.queue.json
 
   tags = {
       "Name"                           = var.sqs_queue_name
@@ -41,4 +41,10 @@ resource "aws_sqs_queue" "queue" {
       "Project   "                     = var.project
   }
 }
+
+resource "aws_sqs_queue_policy" "queue_policy" {
+  queue_url             = aws_sqs_queue.queue.url
+  policy                = data.aws_iam_policy_document.queue.json
+}
+
 
