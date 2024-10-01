@@ -24,9 +24,10 @@ locals {
   job_name                            = "${var.project}-${var.job_name}-${var.env}"
   batch_trigger_function_name         = "${var.project}-${var.batch_trigger_function_name}-${var.env}"
   batch_trigger_event_rule_name       = "${var.project}-${var.batch_trigger_event_rule_name}-${var.env}"
+  data_ingestion_bucket_name          = "${var.project}-${var.data_ingestion_bucket_name}-${var.env}"  
+  ingestion_sqs_queue_name            = "${var.project}-${var.ingestion_sqs_queue_name}-${var.env}"  
   batch_trigger_event_rule_desc       = "batch trigger event rule name"
   batch_trigger_event_schedule        = "${var.batch_trigger_event_schedule}"
-  data_ingestion_bucket_name          = "${var.project}-${var.data_ingestion_bucket_name}-${var.env}"  
   data_ingestion_bucket_events        = []
   data_ingestion_bucket_filter_suffix = "null"
   data_ingestion_bucket_filter_prefix = "null"
@@ -115,3 +116,40 @@ module "data_ingestion_bucket" {
   filter_prefix               = var.data_ingestion_bucket_filter_prefix
   bucket_sqs_notification     = var.data_ingestion_bucket_sqs_notification
 }
+##sqs queue call
+module "ingestion_sqs_queue" {
+  source                      = "../modules/sqs"
+  project                     = var.project
+  region                      = var.region  
+  env                         = var.env
+  sqs_queue_name              = local.ingestion_sqs_queue_name
+  bucket_arn                  = module.data_ingestion_bucket.s3_bucket_arn
+}
+
+
+
+/*
+resource "aws_sqs_queue_policy" "sqs_queue_policy_deploy" {
+  queue_url             = module.ingestion_sqs_queue.sqs_queue_url
+  policy                = local.deploy_sqs_policies[each.key].queue_access_policy
+}
+
+
+      queue_access_policy   = jsonencode(
+      {
+        "Version": "2012-10-17",
+        "Id": "sqspolicy",
+        "Statement": [{
+          "Sid": "First",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "sqs:SendMessage",
+          "Resource": "arn:aws:sqs:${var.aws_region}:${var.aws_accounts["devops_deploy"].account}:sagerx-${var.app_department}-${var.app_env}-pipeline-${local.deploy_sqs_params["deploy_eventbus_dlq"].queue_name}",
+          "Condition": {
+            "ArnEquals": {
+              "aws:SourceArn": "arn:aws:events:us-east-1:862449238228:event-bus/sagerx-dec-dev-submission-requests-eventbus"
+            }
+          }
+        }]
+      })
+*/
