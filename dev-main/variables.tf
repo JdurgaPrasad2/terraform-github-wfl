@@ -155,13 +155,13 @@ variable "data_ingestion_bucket_name" {
   type = string
   default = "data-ingestion"  
 }
-
+/* 
 variable "sqs_queue_arn" {
   description = "sqs queue arn"
   type = string
   default = null
 }
-
+*/
 variable "data_ingestion_bucket_events" {
   description = "list of s3 events for data ingestion bucket"
   type = list(string)
