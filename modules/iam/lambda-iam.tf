@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "lambda_service_assume" {
 
 #lambda service role  
 resource "aws_iam_role" "lambda_execution" {
-  name               = "${var.project}-lambda-execution-role-${var.env}"
+  name               = "${var.project}-${var.lambda_execution_role_name}-${var.env}"
   assume_role_policy = data.aws_iam_policy_document.lambda_service_assume.json
 }
 
@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "lambda_execution" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:311324824904:log-group:/aws/lambda/${aws_lambda_function.function.id}:*"]
+    resources = ["arn:aws:logs:${var.region}:311324824904:log-group:/aws/lambda/${var.lambda_function_id}:*"]
   }
 
   statement {
@@ -46,13 +46,13 @@ data "aws_iam_policy_document" "lambda_execution" {
 }
 
 resource "aws_iam_role_policy" "lambda_execution" {
-  name   = "${var.project}-lambda-execution-policy-${var.env}"
+  name   = "${var.project}-${var.lambda_execution_policy_name}-${var.env}"
   policy = data.aws_iam_policy_document.lambda_execution.json
   role   = aws_iam_role.lambda_execution.id
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution" {
-  for_each = toset( [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ] )  
+  for_each = toset( [ "${var.managed_policy_list_for_lambda}" ] )  
   role       =  aws_iam_role.lambda_execution.name
   policy_arn = each.key
 }
