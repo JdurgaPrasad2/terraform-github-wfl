@@ -46,6 +46,21 @@ module "batch" {
   job_def_type          = var.job_def_type
 }
 
+#####################################
+module "batch_trigger_lambda_iam" {
+  source                         = "../modules/iam-lambda"
+  project                        = var.project
+  region                         = local.region 
+  env                            = var.env
+  lambda_execution_role_name     = var.lambda_batch_execution_role_name
+  lambda_function_id             = module.lambda_batch_trigger.lambda_id
+  lambda_execution_policy_name   = var.lambda_batch_execution_policy_name
+  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ]
+}
+
+#####################################
+
+
 # lambda to trigger batch 
 
 module "lambda_batch_trigger" {
@@ -54,6 +69,7 @@ module "lambda_batch_trigger" {
   region                  = local.region 
   env                     = var.env
   function_name           = local.batch_trigger_function_name
+  lambda_execution_role_arn = module.batch_trigger_lambda_iam.role_arn
   source_dir              = var.batch_trigger_src_dir
   output_path             = var.batch_trigger_src_op_path
   job_queue_name          = local.job_queue_name
