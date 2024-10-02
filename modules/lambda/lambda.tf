@@ -12,7 +12,7 @@ resource "aws_lambda_function" "function" {
     function_name = var.function_name
     filename = data.archive_file.lambda_source_code.output_path
     source_code_hash = data.archive_file.lambda_source_code.output_base64sha256
-    role = aws_iam_role.lambda_execution.arn
+    role = var.lambda_execution_role_arn
     handler = var.handler
     runtime = var.runtime 
     environment {
@@ -23,35 +23,3 @@ resource "aws_lambda_function" "function" {
       }
     }
 }
-
-/*
-#create cloudwatch event bridge rule 
-resource "aws_cloudwatch_event_rule" "schedule" {
-    name = "sagerx-${var.department}-${var.env}-workspace-low-util-rule"
-    description = "workspace low util rule "
-    schedule_expression = var.schedule-expression
-} 
-*/
-/*
-#attach event target for event bridge rule
-resource "aws_cloudwatch_event_target" "check_target" {
-    rule = aws_cloudwatch_event_rule.schedule.name
-    target_id = "sagerx-${var.department}-${var.env}-low-util-workspaces"
-    arn = aws_lambda_function.function.arn
-    /*
-    input = <<JSON
-{
-  "workspace_stale_days": "${var.workspace_stale_days}"
-}
-JSON   
-}
-*/
-/*
-resource "aws_lambda_permission" "allow_cloudwatch_to_call_lambda" {
-    statement_id = "AllowExecutionFromCloudWatch"
-    action = "lambda:InvokeFunction"
-    function_name = "sagerx-${var.department}-${var.env}-low-util-workspaces"
-    principal = "events.amazonaws.com"
-    source_arn = aws_cloudwatch_event_rule.schedule.arn
-}
-*/
