@@ -75,3 +75,8 @@ variable "function_name" {
   description = "lambda function name"
   type = string
 }
+
+variable "lambda_execution_role_arn" {
+  description = "lambda execution role arn"
+  type = string
+}
