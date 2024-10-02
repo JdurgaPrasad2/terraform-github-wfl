@@ -36,8 +36,8 @@ resource "aws_dynamodb_table" "status_table" {
     name               = "Doc-Id-Index"
     hash_key           = "Doc-Id"
     range_key          = "Doc-Name"
-    write_capacity     = ""
-    read_capacity      = ""
+    #write_capacity     = ""
+    #read_capacity      = ""
     projection_type    = "INCLUDE"
     non_key_attributes = ["Doc-Id"]
   } 
