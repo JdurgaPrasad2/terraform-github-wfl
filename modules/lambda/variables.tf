@@ -80,3 +80,15 @@ variable "lambda_execution_role_arn" {
   description = "lambda execution role arn"
   type = string
 }
+
+variable "dynamodb_status_table_name" {
+  description = "dynamodb status table name"
+  type = string
+  default = ""
+}
+
+variable "dynamodb_status_table_arn" {
+  description = "dynamodb status table arn"
+  type = string
+  default = ""
+}
