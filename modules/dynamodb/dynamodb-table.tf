@@ -43,7 +43,7 @@ resource "aws_dynamodb_table" "status_table" {
   } */
 
   tags = {
-    "Name"                           = "${var.project}-${var.lambda_execution_role_name}-${var.env}"
+    "Name"                           = "${var.project}-${var.dynamodb_table_name}-${var.env}"
     "Project"                        = "${var.project}"
     "Environment"                    = "${var.env}"
   }
