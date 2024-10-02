@@ -18,12 +18,12 @@ resource "aws_lambda_function" "function" {
 
     environment {
       variables = {
-        job_def_name   = var.job_def_name
-        job_queue_name = var.job_queue_name
-        job_name       = var.job_name
-        sqs_queue_url  = var.source_sqs_queue_url
-        dynamodb-status-table-name = ""
-        dynamodb-status-table-arn  = ""
+        job-def-name   = var.job_def_name
+        job-queue-name = var.job_queue_name
+        job-name       = var.job_name
+        sqs-queue-url  = var.source_sqs_queue_url
+        dynamodb-status-table-name = var.dynamodb_status_table_name
+        dynamodb-status-table-arn  = var.dynamodb_status_table_arn
         s3-data-ingestion-bucket-name = var.target_bucket_name
         s3-data-ingestion-bucket-name = var.target_bucket_arn  
       }
