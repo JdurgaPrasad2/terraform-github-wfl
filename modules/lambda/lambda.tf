@@ -23,8 +23,8 @@ resource "aws_lambda_function" "function" {
         sqs_queue_url  = var.source_sqs_queue_url
         dynamodb-status-table-name = ""
         dynamodb-status-table-arn  = ""
-        s3-data-ingestion-bucket-name = ""
-        s3-data-ingestion-bucket-name = ""
+        s3-data-ingestion-bucket-name = var.target_bucket_name
+        s3-data-ingestion-bucket-name = var.target_bucket_arn  
       }
     }
 }
