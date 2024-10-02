@@ -48,7 +48,7 @@ module "batch" {
 
 
 # iam role/policies for batch trigger lambda
-#####################################
+
 module "batch_trigger_lambda_iam" {
   source                         = "../modules/iam-lambda"
   project                        = var.project
@@ -57,11 +57,11 @@ module "batch_trigger_lambda_iam" {
   lambda_execution_role_name     = var.lambda_batch_execution_role_name
   lambda_function_id             = module.lambda_batch_trigger.lambda_id
   lambda_execution_policy_name   = var.lambda_batch_execution_policy_name
-  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ]
+  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", 
+                                     "arn:aws:iam::aws:policy/AmazonSQSFullAccess", 
+                                     "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess" 
+                                   ]
 }
-
-#####################################
-
 
 # lambda to trigger batch 
 
@@ -168,7 +168,9 @@ module "ingestion_trigger_lambda_iam" {
   lambda_execution_role_name     = var.lambda_ingestion_execution_role_name
   lambda_function_id             = module.lambda_ingestion_trigger.lambda_id
   lambda_execution_policy_name   = var.lambda_ingestion_execution_policy_name
-  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AmazonS3FullAccess" ]
+  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+                                     "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+                                    ]
 }
 # lambda to trigger ingestion 
 
