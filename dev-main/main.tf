@@ -76,10 +76,12 @@ module "lambda_batch_trigger" {
   output_path             = var.batch_trigger_src_op_path
   job_queue_name          = local.job_queue_name
   job_def_name            = local.job_def_name
-  source_sqs_queue_url    = module.ingestion_sqs_queue.sqs_queue_url
-  handler                 = "${var.batch_trigger_src_op_path}.lambda_handler"
-  runtime                 = var.runtime
   job_name                = local.job_name
+  dynamodb_status_table_name = module.dynamodb_data_status_table.dynamodb_table_id
+  dynamodb_status_table_arn  = module.dynamodb_data_status_table.dynamodb_table_arn
+  source_sqs_queue_url       = module.ingestion_sqs_queue.sqs_queue_url
+  handler                    = "${var.batch_trigger_src_op_path}.lambda_handler"
+  runtime                    = var.runtime
 }
 
 # eventbridge rule to invoke lambda which triggers batch
@@ -187,6 +189,8 @@ module "lambda_ingestion_trigger" {
   runtime                 = var.runtime
   target_bucket_arn       = module.data_ingestion_bucket.s3_bucket_arn
   target_bucket_name      = local.data_ingestion_bucket_name
+  dynamodb_status_table_name = module.dynamodb_data_status_table.dynamodb_table_id
+  dynamodb_status_table_arn  = module.dynamodb_data_status_table.dynamodb_table_arn
 }
 
 # eventbridge rule to invoke lambda which triggers ingestion
