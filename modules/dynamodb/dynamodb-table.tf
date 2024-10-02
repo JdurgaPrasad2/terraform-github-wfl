@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "status_table" {
-  name           = "${var.project}-${var.lambda_execution_role_name}-${var.env}"
+  name           = "${var.project}-${var.dynamodb_table_name}-${var.env}"
   billing_mode   = "PROVISIONED"
   read_capacity  = 3000
   write_capacity = 1000
