@@ -15,22 +15,8 @@ variable "project" {
   type        = string
 }
 
-variable "lambda_execution_role_name" {
-  description = "lambda execution role name"
+variable "dynamodb_table_name" {
+  description = "dynamodb table name"
   type        = string
 }
 
-variable "lambda_function_id" {
-  description = "lambda function id"
-  type        = string
-}
-
-variable "lambda_execution_policy_name" {
-  description = "lambda execution policy name"
-  type        = string
-}
-
-variable "managed_policy_list_for_lambda" {
-  description = "iam managed policy list for lambda"
-  type        = list(string)
-}
