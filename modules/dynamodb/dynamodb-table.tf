@@ -34,12 +34,12 @@ resource "aws_dynamodb_table" "status_table" {
   
   global_secondary_index {
     name               = "Doc-Id-Index"
-    hash_key           = "Doc-Id"
-    range_key          = "Doc-Name"
+    hash_key           = "Doc-Name"
+    range_key          = "Doc-Path"
     write_capacity     = "1000"
     read_capacity      = "3000"
     projection_type    = "INCLUDE"
-    non_key_attributes = ["Doc-Id"]
+    non_key_attributes = ["Doc-Id", "Doc-Ingestion-Status"]
   } 
 
   tags = {
