@@ -1,5 +1,10 @@
 resource "aws_s3_bucket" "resource" {
   bucket =  lower(var.bucket_name)
+  tags = {
+    "Name"                           = "${var.bucket_name}"
+    "Project"                        = "${var.project}"
+    "Environment"                    = "${var.env}"
+  }
 }
 
 /*
