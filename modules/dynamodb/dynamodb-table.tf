@@ -43,7 +43,8 @@ resource "aws_dynamodb_table" "dynamodb-table" {
   } */
 
   tags = {
-    Name        = "dynamodb-table-1"
-    Environment = "production"
+    "Name"                           = "${var.project}-${var.lambda_execution_role_name}-${var.env}"
+    "Project"                        = "${var.project}"
+    "Environment"                    = "${var.env}"
   }
 }
