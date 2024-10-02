@@ -1,3 +1,4 @@
+/*
 #lambda service assume policy
 data "aws_iam_policy_document" "lambda_service_assume" {
   statement {
@@ -56,3 +57,4 @@ resource "aws_iam_role_policy_attachment" "lambda_execution" {
   role       =  aws_iam_role.lambda_execution.name
   policy_arn = each.key
 }
+*/
