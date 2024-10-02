@@ -4,7 +4,7 @@ resource "aws_dynamodb_table" "status_table" {
   read_capacity  = 3000
   write_capacity = 1000
   hash_key       = "Doc-Id"
-  #range_key      = "Doc-Name"
+  range_key      = "Doc-Name"
 
   attribute {
     name = "Doc-Id"
@@ -31,15 +31,15 @@ resource "aws_dynamodb_table" "status_table" {
     attribute_name = "TimeToExist"
     enabled        = true
   } */
-  /*
+  
   global_secondary_index {
-    name               = ""
-    hash_key           = ""
-    range_key          = ""
+    name               = "Doc-Id-Index"
+    hash_key           = "Doc-Id"
+    range_key          = "Doc-Name"
     write_capacity     = ""
     read_capacity      = ""
     projection_type    = "INCLUDE"
-    non_key_attributes = [""]
+    non_key_attributes = ["Doc-Id"]
   } */
 
   tags = {
