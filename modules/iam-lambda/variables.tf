@@ -32,5 +32,5 @@ variable "lambda_execution_policy_name" {
 
 variable "managed_policy_list_for_lambda" {
   description = "iam managed policy list for lambda"
-  type        = string
+  type        = list(string)
 }
