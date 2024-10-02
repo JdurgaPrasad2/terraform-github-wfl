@@ -39,7 +39,7 @@ resource "aws_dynamodb_table" "status_table" {
     write_capacity     = "1000"
     read_capacity      = "3000"
     projection_type    = "INCLUDE"
-    non_key_attributes = ["Doc-Id", "Doc-Ingestion-Status"]
+    non_key_attributes = ["Doc-Ingestion-Status"]
   } 
 
   tags = {
