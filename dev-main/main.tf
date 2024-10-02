@@ -46,6 +46,8 @@ module "batch" {
   job_def_type          = var.job_def_type
 }
 
+
+# iam role/policies for batch trigger lambda
 #####################################
 module "batch_trigger_lambda_iam" {
   source                         = "../modules/iam-lambda"
@@ -149,8 +151,6 @@ resource "aws_sqs_queue_policy" "queue_policy" {
 }
 
 
-# lambda to trigger ingestion 
-
 locals {
   ingestion_trigger_function_name         = "${var.project}-${var.ingestion_trigger_function_name}-${var.env}"
   ingestion_trigger_event_rule_name       = "${var.project}-${var.ingestion_trigger_event_rule_name}-${var.env}"
@@ -158,6 +158,7 @@ locals {
   ingestion_trigger_event_schedule        = "${var.ingestion_trigger_event_schedule}"
 }
 
+# iam role/policies for ingestion trigger lambda
 
 module "ingestion_trigger_lambda_iam" {
   source                         = "../modules/iam-lambda"
@@ -167,8 +168,9 @@ module "ingestion_trigger_lambda_iam" {
   lambda_execution_role_name     = var.lambda_ingestion_execution_role_name
   lambda_function_id             = module.lambda_ingestion_trigger.lambda_id
   lambda_execution_policy_name   = var.lambda_ingestion_execution_policy_name
-  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ]
+  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AmazonS3FullAccess" ]
 }
+# lambda to trigger ingestion 
 
 module "lambda_ingestion_trigger" {
   source                  = "../modules/lambda"
