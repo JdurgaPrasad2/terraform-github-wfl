@@ -15,6 +15,7 @@ resource "aws_lambda_function" "function" {
     role = var.lambda_execution_role_arn
     handler = var.handler
     runtime = var.runtime 
+
     environment {
       variables = {
         job_def_name   = var.job_def_name
@@ -26,5 +27,10 @@ resource "aws_lambda_function" "function" {
         s3-data-ingestion-bucket-name = var.target_bucket_name
         s3-data-ingestion-bucket-name = var.target_bucket_arn  
       }
+    }
+    tags = {
+      "Name"                           = "${var.function_name}"
+      "Project"                        = "${var.project}"
+      "Environment"                    = "${var.env}"
     }
 }
