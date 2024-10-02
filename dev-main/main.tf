@@ -204,7 +204,7 @@ module "eventbridge_rule_ingestion_trigger" {
   event_schedule          = local.ingestion_trigger_event_schedule
 }
 
-# dyanmodb status table
+# dyanmodb data status table
 
 module "dynamodb_data_status_table" {
   source                  = "../modules/dynamodb"
