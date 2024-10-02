@@ -1,5 +1,11 @@
-# outputs.tf
-output "lambda_arn" {
-  description = "Generated lambda arn"
-  value       = aws_lambda_function.function.arn
-}
+# versions.tf
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 5.17.0"
+    }
+  }
+  required_version = ">= 0.15"
+} 
