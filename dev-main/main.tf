@@ -159,12 +159,24 @@ locals {
 }
 
 
+module "ingestion_trigger_lambda_iam" {
+  source                         = "../modules/iam-lambda"
+  project                        = var.project
+  region                         = local.region 
+  env                            = var.env
+  lambda_execution_role_name     = var.lambda_ingestion_execution_role_name
+  lambda_function_id             = module.lambda_ingestion_trigger.lambda_id
+  lambda_execution_policy_name   = var.lambda_ingestion_execution_policy_name
+  managed_policy_list_for_lambda = [ "arn:aws:iam::aws:policy/AWSBatchFullAccess", "arn:aws:iam::aws:policy/AmazonSQSFullAccess" ]
+}
+
 module "lambda_ingestion_trigger" {
   source                  = "../modules/lambda"
   project                 = var.project
   region                  = local.region 
   env                     = var.env
   function_name           = local.ingestion_trigger_function_name 
+  lambda_execution_role_arn = module.ingestion_trigger_lambda_iam.role_arn
   source_dir              = var.ingestion_trigger_src_dir
   output_path             = var.ingestion_trigger_src_op_path
   handler                 = "${var.ingestion_trigger_src_op_path}.lambda_handler"
