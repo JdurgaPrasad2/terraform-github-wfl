@@ -40,7 +40,7 @@ resource "aws_dynamodb_table" "status_table" {
     read_capacity      = ""
     projection_type    = "INCLUDE"
     non_key_attributes = ["Doc-Id"]
-  } */
+  } 
 
   tags = {
     "Name"                           = "${var.project}-${var.dynamodb_table_name}-${var.env}"
