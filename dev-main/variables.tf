@@ -204,3 +204,27 @@ variable "ingestion_trigger_event_schedule" {
   type = string
   default = "rate(2 hours)"
 }
+
+variable "lambda_batch_execution_role_name" {
+  description = "lambda batch execution role_name"
+  type = string
+  default = "lambda-batch-execution-role"
+}
+
+variable "lambda_batch_execution_policy_name" {
+  description = "lambda batch execution policy name"
+  type = string
+  default = "lambda-batch-execution-policy"
+}
+
+variable "lambda_ingestion_execution_role_name" {
+  description = "lambda ingestion execution role_name"
+  type = string
+  default = "lambda-ingestion-execution-role"
+}
+
+variable "lambda_ingestion_execution_policy_name" {
+  description = "lambda ingestion execution policy name"
+  type = string
+  default = "lambda-ingestion-execution-policy"
+}
