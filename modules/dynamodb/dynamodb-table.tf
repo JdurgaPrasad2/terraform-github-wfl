@@ -13,13 +13,13 @@ resource "aws_dynamodb_table" "status_table" {
 
   attribute {
     name = "Doc-Name"
-    type = "S"
+    type = "S" 
   }
-
+ /*
   attribute {
     name = "Doc-Path"
     type = "S"
-  }
+  } */
 
   attribute {
     name = "Doc-Ingestion-Status"
@@ -35,11 +35,11 @@ resource "aws_dynamodb_table" "status_table" {
   global_secondary_index {
     name               = "Doc-Id-Index"
     hash_key           = "Doc-Name"
-    range_key          = "Doc-Path"
+    range_key          = "Doc-Ingestion-Status"
     write_capacity     = "1000"
     read_capacity      = "3000"
     projection_type    = "INCLUDE"
-    non_key_attributes = ["Doc-Ingestion-Status"]
+    non_key_attributes = ["Doc-Id"]
   } 
 
   tags = {
