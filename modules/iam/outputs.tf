@@ -1,5 +1,5 @@
 # outputs.tf
-output "lambda_arn" {
-  description = "Generated lambda arn"
-  value       = aws_lambda_function.function.arn
+output "iam_role_arn" {
+  description = "Generated iam role arn"
+  value       = aws_iam_role.lambda_execution.arn
 }
