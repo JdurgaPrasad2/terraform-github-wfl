@@ -1,10 +1,10 @@
 # outputs.tf
-output "role_arn" {
-  description = "Generated iam role arn"
-  value       = aws_iam_role.lambda_execution.arn
+output "dynamodb_table_arn" {
+  description = "Generated dynamodb table arn"
+  value       = aws_dynamodb_table.status_table.arn
 }
 
-output "role_id" {
-  description = "Generated iam role name"
-  value       = aws_iam_role.lambda_execution.id
+output "dynamodb_table_id" {
+  description = "Generated dynamodb table id"
+  value       = aws_dynamodb_table.status_table.id
 }
