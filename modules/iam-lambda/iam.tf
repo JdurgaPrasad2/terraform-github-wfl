@@ -52,7 +52,7 @@ resource "aws_iam_role_policy" "lambda_execution" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution" {
-  for_each = toset( [ "${var.managed_policy_list_for_lambda}" ] )  
+  for_each = toset( "${var.managed_policy_list_for_lambda}" )  
   role       =  aws_iam_role.lambda_execution.name
   policy_arn = each.key
 }
