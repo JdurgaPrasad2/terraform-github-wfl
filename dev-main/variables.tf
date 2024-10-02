@@ -228,3 +228,9 @@ variable "lambda_ingestion_execution_policy_name" {
   type = string
   default = "lambda-ingestion-execution-policy"
 }
+
+variable "dynamodb_status_table_name" {
+  description = "dynamodb status table for data ingestion"
+  type = string
+  default = "data-ingestion-status-table"
+}
