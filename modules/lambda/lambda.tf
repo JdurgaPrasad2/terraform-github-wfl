@@ -20,6 +20,7 @@ resource "aws_lambda_function" "function" {
         job_def_name   = var.job_def_name
         job_queue_name = var.job_queue_name
         job_name       = var.job_name
+        sqs_queue_url  = var.source_sqs_queue_url
       }
     }
 }
