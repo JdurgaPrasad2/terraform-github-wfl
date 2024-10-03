@@ -17,14 +17,14 @@ resource "aws_lambda_function" "function" {
     runtime = var.runtime 
     environment {
       variables = {
-        job-def-name   = var.job_def_name
-        job-queue-name = var.job_queue_name
-        job-name       = var.job_name
-        sourec-sqs-queue-url          = var.source_sqs_queue_url
-        ingestion-target-bucket-arn   = var.target_bucket_arn
-        ingestion-target-bucket-name  = var.target_bucket_name
-        dynamodb-status-table-name    = var.dynamodb_status_table_name
-        dynamodb-status-table-arn     = var.dynamodb_status_table_arn  
+        job_def_name   = var.job_def_name
+        job_queue_name = var.job_queue_name
+        job_name       = var.job_name
+        sourec_sqs_queue_url          = var.source_sqs_queue_url
+        ingestion_target_bucket_arn   = var.target_bucket_arn
+        ingestion_target_bucket_name  = var.target_bucket_name
+        dynamodb_status_table_name    = var.dynamodb_status_table_name
+        dynamodb_status_table_arn     = var.dynamodb_status_table_arn  
       }
     }
     /*
