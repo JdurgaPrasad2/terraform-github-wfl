@@ -27,10 +27,9 @@ resource "aws_lambda_function" "function" {
         dynamodb_status_table_arn     = var.dynamodb_status_table_arn  
       }
     }
-    /*
     tags = {
       "Name"                           = "${var.function_name}"
       "Project"                        = "${var.project}"
       "Environment"                    = "${var.env}"
-    } */
+    } 
 }
