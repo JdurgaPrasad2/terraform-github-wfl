@@ -51,7 +51,7 @@ def lambda_handler(event, context):
      batch_client = boto3.client('batch')
      sqs = boto3.client('sqs')
     
-     queue_url = 'https://sqs.us-east-1.amazonaws.com/663026076425/binder-batch-trigger-sqs-test'
+     queue_url = 'https://sqs.us-east-1.amazonaws.com/311324824904/tst-ingestion-sqs-queue-dev'
     
      job_definition_name = 'tst-batch-job-def-dev'
      job_queue_name =      'tst-batch-job-queue-dev'
