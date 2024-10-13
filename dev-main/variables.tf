@@ -122,7 +122,7 @@ variable "batch_trigger_event_rule_name" {
 variable "batch_trigger_event_schedule" {
   description = "batch trigger event schedule"
   type = string
-  default = "rate(2 hours)"
+  default = "rate(3 minutes)"
 }
 
 variable "job_name" {
