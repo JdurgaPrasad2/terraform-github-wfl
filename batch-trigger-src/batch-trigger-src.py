@@ -8,11 +8,10 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 '''
+import json
+import boto3
 
- import json
- import boto3
-
- def lambda_handler(event, context):
+def lambda_handler(event, context):
     
      # TODO implement
      batch_client = boto3.client('batch')
