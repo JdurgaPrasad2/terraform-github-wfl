@@ -75,7 +75,7 @@ jobs:
         env:
           TF_VAR_env:                ${{ vars.ENV }}
           TF_VAR_region:             ${{ vars.REGION }}
-          TF_VAR_ecr_app_code_image: ${{ vars.REPO_NAME }}
+          TF_VAR_ecr_app_code_image: ${{ vars.APP_IMAGE }}
           TF_VAR_subnet_ids:         ${{ vars.SUBNET_IDS }}
         run: | 
             terraform init
